@@ -1,0 +1,17 @@
+1. Ejecutar ./build.sh
+2. Editar docs/index.html
+3. Añadir script fontawesome: 
+    <script src="https://kit.fontawesome.com/c743eb3668.js" crossorigin="anonymous"></script>
+4. Añadir scripts plugins: 
+    <script src="./plugin/menu/menu.js"></script>
+    <script src="./plugin/chalkboard/plugin.js"></script>
+5. Añadir plugins a las opciones de incicialización de reveal.js;
+    plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath, 
+          RevealMenu,
+          RevealChalkboard
+        ]
