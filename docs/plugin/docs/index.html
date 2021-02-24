@@ -1,17 +1,22 @@
----
-title: Fundamentos probabilísticos de la Epidemiología
-separator: '^\r?\n---\r?\n$'
-verticalSeparator: '^\r?\n--\r?\n$'
-author: Alfredo Sánchez Alberca
-theme: black
-customTheme: custom
-css: [bootstrap-light.css, custom.css]
-highlightTheme: monokai
-revealOptions:
-  transition: convex
-  center: true
-#logoImg: "/img/logo-python.png"
----
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Fundamentos probabilísticos de la Epidemiología</title>
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="./css/highlight/monokai.css" />
+    <link rel="stylesheet" href="./_assets/bootstrap-light.css" />
+    <link rel="stylesheet" href="./_assets/custom.css" />
+    <script src="https://kit.fontawesome.com/c743eb3668.js" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides"><section  data-markdown><script type="text/template">
 
 <!-- .slide: data-background="./img/virus.jpg" -->
 
@@ -22,9 +27,7 @@ revealOptions:
 (<a href="mailto:asalber@ceu.es">asalber@ceu.es</a>)<br/>
 <a href="http://aprendeconalf.es">http://aprendeconalf.es</a>
 </div>
-
----
-
+</script></section><section ><section data-markdown><script type="text/template">
 ## ¿Qué es la Epidemiología?
 
 Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es decir, el estudio de lo que le ocurre a las poblaciones.
@@ -32,30 +35,19 @@ Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es de
 > En el ámbito de la salud pública, la **Epidemilogía** es una rama de la Medicina que se encarga del estudio de la distribución y las causas de eventos relacionados con la salud (normalmente enfermedades) en las poblaciones, y la aplicación de este estudio para controlar problemas públicos de salud.
 
 <img src="img/detective.png" width=80% alt="Detective epidemiólogo">
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## La Epidemiología está de moda
 
 ![Fernando Simón](img/fernando-simon.jpg)
-
---
-
+</script></section><section data-markdown><script type="text/template">
+![Términos epidemiología](img/wordcloud.png)
+</script></section></section><section  data-markdown><script type="text/template">
 ## Algunos descubrimientos históricos
 
-- 1854: John Snow determina que la causa de la epidemia de cólera que asolaba Lóndres era que el agua estaba contaminada con heces.
-- 1898: Ronald Ross averigua que el transmisor de la malaria es el el mosquito Anopheles.
-- 1950: Se descubre que fumar es el principal factor de riesgo de cáncer de pulmón.
-- 1954: Se valida la primera vacuna contra la poliomielitis (Jonas Salk’s).
-- 1970: Se observó que el ejercicio físico y una dieta sana reducían el riesgo de sufrir un infarto.
-- 1983: Robert Gallo, Luc Montagnier y Françoise Barré-Sinoussi identifican el virus que causa el SIDA. Poco después se se observó que el riesgo de contraer el HIV aumentaba con ciertas prácticas sexuales y con el consumo de algunos tipos de drogas.
-
---
-
-![Términos epidemiología](img/wordcloud.png)
-
---
-
+- En 1950 la epidemiología detectó un mayor riesgo de cáncer de pulmón entre los fumadores.
+- En los 70 se observó que el ejercicio físico y una dieta sana reducían el riesgo de sufrir un infarto.
+- En los 80 se observó que el riesgo de contraer el HIV aumentaba con ciertas prácticas sexuales y con el consumo de algunos tipos de drogas.
+</script></section><section  data-markdown><script type="text/template">
 ## Índices epidemiológicos basados en probabilidades
 
 <div class="container"> 
@@ -75,95 +67,76 @@ Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es de
 - Especificidad
 - Valores predictivos
 </div>
-
----
-
+</script></section><section ><section data-markdown><script type="text/template">
 ## El concepto de probabilidad
 
-> **Definición clásica (Laplace)** $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$ <!-- .element: class="fragment" -->
-
-**Ejemplo** Al tirar un dado equilibrado, la probabilidad de sacar un número par $E=\\{2, 4, 6\\}$ es
-$$ P(E) = \frac{3}{6} = 0.5$$
-
---
-
-## El concepto de probabilidad
+> **Definición clásica (Laplace)** $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$
 
 > **Definición frecuentista** $$P(E)\approx f_E = \frac{n_E}{n}=\frac{\mbox{Frecuencia absoluta del evento}}{\mbox{Tamaño muestral}}$$
 
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces la probabilidad de curación del tratamiento es
+$$0\leq P(E)\leq 1$$
+</script></section><section data-markdown><script type="text/template">
+## El concepto de probabilidad
 
-$$P(C) = \frac{75}{100} = 0.75 \Rightarrow 75\\%$$
+**Ejemplo** En una población con 1000 personas hay 160 que tienen gripe $G$, entonces
 
---
-
-## Algunas propiedades de la probabilidad
-
-$$0\leq P(E)\leq 1$$  <!-- .element: class="fragment" -->
-
-$$P(\Omega) = P(e_1) + P(e_2) + \cdots + P(e_n) = 1$$ <!-- .element: class="fragment" -->
-
-$$P(\overline E) = 1 - P(E)$$ <!-- .element: class="fragment" -->
-
---
-
+$$P(G) = \frac{160}{1000} = 0.16 \Rightarrow 16\\%$$
+</script></section><section data-markdown><script type="text/template">
 ## Interpretación de una probabilidad
 
-La probabilidad mide la verosimilitud de un suceso.
+La probabilidad mide la verosimilitud de un suceso. 
 
-De manera informal, se puede decir que la probabilidad mide la creencia o la confianza que tenemos en la ocurrencia de un suceso.
+De manera informal, se puede decir que la probabilidad mide la creencia o la confianza que tenemos en la ocurrencia de un suceso. 
 
-- $P(E) = 0 \Rightarrow$ Mínima verosimilitud
+- $P(E) = 0 \Rightarrow$ Mínima verosimilitud 
 - $P(E) = 0.5 \Rightarrow$ Verosimilitud media (máxima incertidumbre)
 - $P(E) = 1 \Rightarrow$ Máxima verosimilitud
 
 ![Balanza probabilidades](img/balance-probability.svg)
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## El concepto de Odds
 
 > $$O(E)=\frac{\mbox{Nº nuevos casos con $E$}}{\mbox{Nº casos sin $E$}}=\frac{P(E)}{P(\overline E)}$$
 
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces el odds de curación del tratamiento es
-
-$$O(C) = \frac{75}{25} = 3$$
-
 <i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Un odds puede ser mayor que 1.
 
---
+**Ejemplo** En una población con 1000 personas hay 160 que tienen gripe $G$, entonces
 
+$$O(G) = \frac{160}{840} = 0.19$$
+</script></section><section data-markdown><script type="text/template">
+## El concepto de Odds
+
+Los odds se utilizan mucho en las apuestas.
+
+**Ejemplo** Te apuesto 10 contra 5 a que mi caballo gana la carrera.
+
+$$O(G) = \frac{10}{5} = 2$$
+</script></section><section data-markdown><script type="text/template">
 ## Interpretación de un Odds
 
-Los odds también permiten cuantificar la verosimilitud de un suceso..., pero en una escala diferente, ya que es una razón de probabilidades.
+Los odds también permiten cuantificar la verosimilitud de un suceso..., pero en una escala diferente. 
 
 - $O(E) = 0 \Rightarrow$ Mínima verosimilitud
 - $O(E) = 1 \Rightarrow$ Verosimilitud media (máxima incertidumbre)
 - $O(E) = \infty \Rightarrow$ Máxima verosimilitud
 
 ![Balanza probabilidades](img/balance-odds.svg)
-
---
-
-## Conversión de Odds en probabilidades
+</script></section><section data-markdown><script type="text/template">
+## Conversión de Odds a probabilidad
 
 $$ \frac{O(E)}{1 + O(E)} = \frac{\frac{P(E)}{P(\overline E)}}{1 + \frac{P(E)}{P(\overline E)}} = \frac{\frac{P(E)}{P(\overline E)}}{\frac{P(\overline E) + P(E)}{P(\overline E)}} = P(E)$$
 
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75.
+**Ejemplo** Te apuesto 10 contra 5 a que mi caballo gana la carrera.
 
-$$O(C) = \frac{75}{25} = 3 \Rightarrow P(C) = \frac{3}{1+3}=0.75$$
-
----
-
+$$O(G) = \frac{10}{5} = 2 \Rightarrow P(G) = \frac{2}{1+2}=0.66$$
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Prevalencia
 
 > La _prevalencia_ de una enfermedad es la proporción de personas que tienen la enfermedad en un momento concreto.
 > $$\mbox{Prevalencia}(E) = \frac{\mbox{Nº individuos afectados por $E$}}{\mbox{Tamaño poblacional}}$$
 
-**Ejemplo**. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{150}{1000}=0.15$$
-
---
-
+**Ejemplo**. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{160}{1000}=0.16$$
+</script></section><section data-markdown><script type="text/template">
 ## Incidencia o riesgo absoluto
 
 > La _incidencia_ o _riesgo absoluto_ es la proporción de nuevos casos durante un periodo determinado (por día, por semana, por mes, etc.)
@@ -172,9 +145,7 @@ $$O(C) = \frac{75}{25} = 3 \Rightarrow P(C) = \frac{3}{1+3}=0.75$$
 **Ejemplo**. Al comienzo del año se tomó una muestra de 1000 personas sin gripe y al finalizar el año 80 tuvieron gripe. La incidencia de la gripe ese año fue
 
 $$ R(E) = \frac{80}{1000} = 0.08$$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Prevalencia vs Incidencia
 
 |             | Tiempo  |        Casos        | Tipo estudio |
@@ -187,9 +158,7 @@ $$ R(E) = \frac{80}{1000} = 0.08$$
 - La incidencia depende solo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad.
 
 $$ P(E) < R(E) $$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Algunas consideraciones en el caso el COVID
 
 [Datos del ministerio de sanidad](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/situacionActual.htm)
@@ -200,10 +169,8 @@ Los datos son poco precisos y subestiman el riesgo del COVID:
 
 - Muchos asintomáticos no son detectados.
 - La detección de casos es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos)
-- Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).
-
----
-
+- Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por la el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Comparación de riesgos
 
 Dos grupos:
@@ -234,9 +201,7 @@ Dos grupos:
 <td></td>
 </tbody>
 </table>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Riesgo relativo
 
 > $$RR(E)=\frac{\mbox{Riesgo grupo tratamiento}}{\mbox{Riesgo grupo control}}=\frac{R_T(E)}{R_C(E)}=\frac{a/(a+b)}{c/(c+d)}$$
@@ -266,9 +231,7 @@ Dos grupos:
 </table>
 
 $$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Interpretación del riesgo relativo
 
 - $RR=1$ $\Rightarrow$ No hay asociación entre el suceso y la exposición al factor.
@@ -276,9 +239,7 @@ $$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
 - $RR>1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.
 
 ![Interpretación riesgo relativo](img/escala-riesgo-relativo.png)
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Odds ratio
 
 > $$OR(E)=\frac{\mbox{Odds grupo tratamiento}}{\mbox{Odds grupo control}}=\frac{O_T(E)}{O_C(E)}=\frac{a/b}{c/d}=\frac{ad}{bc}$$
@@ -307,27 +268,21 @@ $$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
 </tbody>
 </table>
 
-$$OR(G) = \frac{20/480}{80/420} = 0.22$$
-
---
-
+$$RR(G) = \frac{20/480}{80/420} = 0.22$$
+</script></section><section data-markdown><script type="text/template">
 ## Interpretación del odds ratio
 
 - $OR=1$ $\Rightarrow$ No existe asociación entre el suceso y la exposición al factor.
 - $OR<1$ $\Rightarrow$ La exposición al factor disminuye el riesgo del suceso.
 - $OR>1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Riesgo relativo vs Odds ratio
 
 El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.
 
 La interpretación del odds ratio es más enrevesada porque es contrafactual, ya que da cuántas veces es más frecuente el suceso en el grupo tratamiento en comparación con el control, asumiendo que en el
 grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es que no depende de la incidencia de la enfermedad.
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Riesgo relativo vs Odds ratio
 
 <div class="container"> 
@@ -399,9 +354,7 @@ OR(E) &= \frac{60/160}{40/640} = 6
 $$
 </div>
 </div>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Aplicación al COVID-19
 
 - [La edad aumenta la gravedad](https://www.npr.org/sections/coronavirus-live-updates/2020/03/22/819846180/study-calculates-just-how-much-age-medical-conditions-raise-odds-of-severe-covid?t=1614095513052)
@@ -409,9 +362,7 @@ $$
 - [El déficit de vitamina D aumenta el riesgo de infección](https://medicalxpress.com/news/2021-01-vitamin-d-deficiency-covid-.html)
 - [Las personas con demencia tienen mayor riesgo de infectase](https://www.sciencedaily.com/releases/2021/02/210209083524.htm)
 - [El Remdesivir acelera la recuperación](https://www.nejm.org/doi/full/10.1056/NEJMoa2007764)
-
----
-
+</script></section></section><section ><section data-markdown><script type="text/template">
 ## Tests diagnósticos
 
 > Un test diagnóstico es un test usado para diagnosticar una enfermedad o descartarla.  
@@ -439,9 +390,7 @@ Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y neg
 </tr>
 </tbody>
 </table>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Sensibilidad y especificidad de un test
 
 La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.
@@ -453,9 +402,7 @@ La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.
 > **Especificidad**
 > La _especificidad_ de un test diagnóstico es la proporción de resultados negativos del test en personas sin la enfermedad,
 > $$P(-|\overline{E})=\frac{VN}{VN+FP}$$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Sensibilidad y especificidad de un test
 
 **Ejemplo**
@@ -464,9 +411,7 @@ Un test de antígenos para detectar el SARS-COV-2 tiene una sensibilidad del 70%
 
 - Si aplicamos el test a 100 enfermos dará 70 positivos y 30 negativos.
 - Si aplicamos el test a 100 sanos dará 95 negativos y 5 positivos.
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Fiabilidad de un test diagnóstico
 
 La fiabilidad del test depende también de la prevalencia de la enfermedad.
@@ -524,25 +469,21 @@ Prevalencia 10%
 </table>
 </div>
 </div>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Fiabilidad de un test diagnóstico
 
 **Ejemplo**
 
 <div class="container"> 
 <div class="col"> 
-<img src="img/resultados-test0.01-0.7-0.95.svg">
+<img src="img/resultados-test-1.svg">
 </div>
 
 <div class="col"> 
-<img src="img/resultados-test0.1-0.7-0.95.svg">
+<img src="img/resultados-test-10.svg">
 </div>
 </div>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Cuándo usar un test más sensible o más específico
 
 Utilizaremos un test sensible cuando:
@@ -561,9 +502,7 @@ Utilizaremos un test específico cuando:
 
 - El tratamiento de los falsos positivos puede tener graves
   consecuencias.
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Valores predictivos de un test
 
 > **Valor predictivo positivo**  
@@ -573,9 +512,7 @@ Utilizaremos un test específico cuando:
 > **Valor predictivo negativo**  
 > El _valor predictivo negativo_ de un test diagnóstico es la proporción de personas sin la enfermedad entre las personas con resultado negativo en el test,
 > $$P(\overline{E}|-) = \frac{VN}{VN+FN}$$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Valores predictivos
 
 **Ejemplo**
@@ -638,9 +575,7 @@ $$VPP = \frac{70}{70+45} = 0.609$$
 $$VPN = \frac{855}{30+855} = 0.966$$
 </div>
 </div>
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Interpretación de los valores predictivos
 
 $$
@@ -649,20 +584,74 @@ VPP>0.5 & \Rightarrow & \mbox{Diagnosticar la enfermedad}\newline
 VPN>0.5 & \Rightarrow & \mbox{Descartar la enfermedad}
 \end{array}
 $$
-
---
-
+</script></section><section data-markdown><script type="text/template">
 ## Aplicaciones al COVID-19
 
 - [Fiabilidad del diagnóstico por PCR](https://www.rcpjournals.org/content/clinmedicine/20/6/e209)
 - [Fiabilidad del diagnóstico por el test de antígenos](https://www.cdc.gov/mmwr/volumes/69/wr/mm695152a3.htm)
 - [Comparativa de test](https://academic.oup.com/ajcp/article/154/5/575/5898531)
-
----
-
+</script></section></section><section  data-markdown><script type="text/template">
 ## Referencias
 
 - [Acción matemática contra el coronavirus](http://matematicas.uclm.es/cemat/covid19/)
 - [R Epidemic Consortium (RECON)](https://www.repidemicsconsortium.org/)
 - [Analysis of epidemiological data using R and Epicalc](https://cran.r-project.org/doc/contrib/Epicalc_Book.pdf)
-- [R resources about COVID-19](https://statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/#coronavirus)
+- [R resources about COVID-19](https://statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/#coronavirus)</script></section></div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script src="./plugin/chalkboard/plugin.js"></script>
+    <script src="./plugin/menu/menu.js"></script>
+    <script>
+      function extend() {
+        var target = {};
+        for (var i = 0; i < arguments.length; i++) {
+          var source = arguments[i];
+          for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+              target[key] = source[key];
+            }
+          }
+        }
+        return target;
+      }
+
+      // default options to init reveal.js
+      var defaultOptions = {
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealZoom,
+          RevealNotes,
+          RevealMath,
+          RevealChalkboard,
+          RevealMenu,
+        ]
+      };
+
+      // options from URL query string
+      var queryOptions = Reveal().getQueryHash() || {};
+
+      var options = extend(defaultOptions, {"transition":"convex","center":true}, queryOptions);
+    </script>
+
+    <script src="./_assets/plugin/chalkboard/plugin.js"></script>
+    <script src="./_assets/plugin/menu/menu.js"></script>
+    <script src="./_assets/plugin.js"></script>
+
+    <script>
+      Reveal.initialize(options);
+    </script>
+  </body>
+</html>
