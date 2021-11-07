@@ -1,27 +1,36 @@
 ---
 title: Fundamentos probabilísticos de la Epidemiología
-separator: '^\r?\n---\r?\n$'
-verticalSeparator: '^\r?\n--\r?\n$'
+#separator: '^\r?\n---\r?\n$'
+#verticalSeparator: '^\r?\n--\r?\n$'
 author: Alfredo Sánchez Alberca
 theme: black
 customTheme: custom
-css: [bootstrap-light.css, custom.css]
+#css: [bootstrap-light.css, custom.css]
 highlightTheme: monokai
 revealOptions:
   transition: convex
   center: true
-#logoImg: "/img/logo-python.png"
+enableChalkboard: true
+enableMenu: false
 ---
 
-<!-- .slide: data-background="./img/virus.jpg" -->
+<!-- .slide: data-background="./img/virus.jpeg" -->
 
-# Fundamentos probabilísticos de la Epidemiología:<br/>Riesgos y diagnóstico de enfermedades
+<div id="logo">
+<img src="img/logo-uspceu.svg" />
+</div>    
 
-<div style="text-align:center; text-shadow: 2px 2px 3px #000000;">
-<b>Alfredo Sánchez Alberca</b><br/>
-(<a href="mailto:asalber@ceu.es">asalber@ceu.es</a>)<br/>
-<a href="http://aprendeconalf.es">http://aprendeconalf.es</a>
+**Semana de la Ciencia y la Innovación 2021** 
+
+<div id='title'>
+
+Epidemiología para tiempos de pandemias
+
 </div>
+
+Alfredo Sánchez Alberca <a href="mailto:asalber@ceu.es"><i class='fa fa-envelope'></i></a> <a href="https://twitter.com/aprendeconalf"><i class='fa fa-twitter'></i></a> <a href="https://aprendeconalf.es"><i class='fa fa-home'></i></a>
+
+8 noviembre 2021
 
 ---
 
@@ -58,32 +67,35 @@ Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es de
 
 ## Índices epidemiológicos basados en probabilidades
 
-<div class="container"> 
-<div class="col" data-markdown> 
+<div id="left">
+
 <h3>Riesgos</h3>
 
 - Prevalencia
 - Incidencia
 - Riesgo y Odds
 - Riesgo/Odd relativo
+
 </div>
 
-<div class="col" data-markdown> 
+<div id="right">
+
 <h3>Test diagnósticos</h3>
 
 - Sensibilidad
 - Especificidad
 - Valores predictivos
+
 </div>
 
 ---
 
 ## El concepto de probabilidad
 
-> **Definición clásica (Laplace)** $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$ <!-- .element: class="fragment" -->
+> **Definición clásica (Laplace)** $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$
 
 **Ejemplo** Al tirar un dado equilibrado, la probabilidad de sacar un número par $E=\\{2, 4, 6\\}$ es
-$$ P(E) = \frac{3}{6} = 0.5$$
+$$ P(E) = \frac{3}{6} = 0.5$$ <!-- .element: class="fragment" -->
 
 --
 
@@ -92,8 +104,7 @@ $$ P(E) = \frac{3}{6} = 0.5$$
 > **Definición frecuentista** $$P(E)\approx f_E = \frac{n_E}{n}=\frac{\mbox{Frecuencia absoluta del evento}}{\mbox{Tamaño muestral}}$$
 
 **Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces la probabilidad de curación del tratamiento es
-
-$$P(C) = \frac{75}{100} = 0.75 \Rightarrow 75\\%$$
+$$P(E) = \frac{75}{100} = 0.75 \Rightarrow 75\\%$$ <!-- .element: class="fragment" -->
 
 --
 
@@ -123,13 +134,11 @@ De manera informal, se puede decir que la probabilidad mide la creencia o la con
 
 ## El concepto de Odds
 
-> $$O(E)=\frac{\mbox{Nº nuevos casos con $E$}}{\mbox{Nº casos sin $E$}}=\frac{P(E)}{P(\overline E)}$$
+> $$O(E)=\frac{\mbox{Nº casos con $E$}}{\mbox{Nº casos sin $E$}}=\frac{P(E)}{P(\overline E)}$$
 
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces el odds de curación del tratamiento es
+**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces el odds de curación del tratamiento es $$O(E) = \frac{75}{25} = 3$$ <!-- .element: class="fragment" -->
 
-$$O(C) = \frac{75}{25} = 3$$
-
-<i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Un odds puede ser mayor que 1.
+<i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Un odds puede ser mayor que 1. <!-- .element: class="fragment" -->
 
 --
 
@@ -150,28 +159,26 @@ Los odds también permiten cuantificar la verosimilitud de un suceso..., pero en
 $$ \frac{O(E)}{1 + O(E)} = \frac{\frac{P(E)}{P(\overline E)}}{1 + \frac{P(E)}{P(\overline E)}} = \frac{\frac{P(E)}{P(\overline E)}}{\frac{P(\overline E) + P(E)}{P(\overline E)}} = P(E)$$
 
 **Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75.
-
-$$O(C) = \frac{75}{25} = 3 \Rightarrow P(C) = \frac{3}{1+3}=0.75$$
+$$O(E) = \frac{75}{25} = 3 \Rightarrow P(E) = \frac{3}{1+3}=0.75$$ <!-- .element: class="fragment" -->
 
 ---
 
 ## Prevalencia
 
-> La _prevalencia_ de una enfermedad es la proporción de personas que tienen la enfermedad en un momento concreto.
+> La _prevalencia_ de una enfermedad $E$ es la proporción de personas que tienen la enfermedad en un momento concreto.
 > $$\mbox{Prevalencia}(E) = \frac{\mbox{Nº individuos afectados por $E$}}{\mbox{Tamaño poblacional}}$$
 
-**Ejemplo**. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{150}{1000}=0.15$$
+**Ejemplo**. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{150}{1000}=0.15$$ <!-- .element: class="fragment" -->
 
 --
 
 ## Incidencia o riesgo absoluto
 
-> La _incidencia_ o _riesgo absoluto_ es la proporción de nuevos casos durante un periodo determinado (por día, por semana, por mes, etc.)
+> La _incidencia_ o _riesgo absoluto_ de una enfermedad $E$ es la proporción de nuevos casos durante un periodo determinado (por día, por semana, por mes, etc.)
 > $$R(E)=\frac{\mbox{Nº nuevos casos con $E$ en el periodo}}{\mbox{Tamaño población en riesgo al comienzo del periodo}}$$
 
 **Ejemplo**. Al comienzo del año se tomó una muestra de 1000 personas sin gripe y al finalizar el año 80 tuvieron gripe. La incidencia de la gripe ese año fue
-
-$$ R(E) = \frac{80}{1000} = 0.08$$
+$$ R(E) = \frac{80}{1000} = 0.08$$ <!-- .element: class="fragment" -->
 
 --
 
@@ -184,9 +191,9 @@ $$ R(E) = \frac{80}{1000} = 0.08$$
 
 - La prevalencia muestra el número de personas afectadas (carga de la enfermedad).
 - La incidencia muestra la evolución de la enfermedad y es más útil para detectar brotes y estudiar su causa.
-- La incidencia depende solo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad.
+- La incidencia depende solo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad y de lo agresiva que sea.
 
-$$ P(E) < R(E) $$
+<!-- $$ P(E) < R(E) $$ -->
 
 --
 
@@ -218,8 +225,8 @@ Dos grupos:
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: left;">Suceso<span class="math inline">$E$</span></th>
-<th style="text-align: left;">No suceso <span class="math inline">$\overline E$</span></th>
+<th style="text-align: left;"><span class="math inline">$E$</span></th>
+<th style="text-align: left;"><span class="math inline">$\overline E$</span></th>
 </tr>
 </thead>
 <tbody>
@@ -330,8 +337,7 @@ grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es q
 
 ## Riesgo relativo vs Odds ratio
 
-<div class="container"> 
-<div class="col"> 
+<div id="left">
 <b>Muestra 1</b>
 <br/>
 <table>
@@ -353,6 +359,7 @@ grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es q
 <td style="text-align: center;"><span class="math inline">40</span></td>
 <td style="text-align: center;"><span class="math inline">320</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
 
@@ -365,7 +372,7 @@ OR(E) &= \frac{60/80}{40/320} = 6
 $$
 </div>
 
-<div class="col" data-markdown> 
+<div id="right">
 <b>Muestra 2</b>
 <br/>
 <table>
@@ -387,6 +394,7 @@ $$
 <td style="text-align: center;"><span class="math inline">40</span></td>
 <td style="text-align: center;"><span class="math inline">640</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
 
@@ -398,11 +406,10 @@ OR(E) &= \frac{60/160}{40/640} = 6
 \end{aligned}
 $$
 </div>
-</div>
 
 --
 
-## Aplicación al COVID-19
+## Aplicación a la COVID
 
 - [La edad aumenta la gravedad](https://www.npr.org/sections/coronavirus-live-updates/2020/03/22/819846180/study-calculates-just-how-much-age-medical-conditions-raise-odds-of-severe-covid?t=1614095513052)
 - [El riesgo de infección depende del grupo sanguíneo](https://www.aarp.org/espanol/salud/enfermedades-y-tratamientos/info-2020/tipo-de-sangre-y-riesgo-de-covid.html)
@@ -421,19 +428,19 @@ Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y neg
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">Presencia enfermedad $E$</th>
-<th style="text-align: center;">Ausencia enfermedad $\overline E$</th>
+<th style="text-align: left;">Test</th>
+<th style="text-align: center;">$E$</th>
+<th style="text-align: center;">$\overline E$</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Test positivo <span class="math inline">+</span></td>
+<td style="text-align: left;">Positivo <span class="math inline">+</span></td>
 <td style="text-align: center;"><span style="color: #66ff88">Verdadero positivo $VP$</span></td>
 <td style="text-align: center;"><span style="color: #fe375a">Falso positivo $FP$</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Test negativo <span class="math inline">−</span></td>
+<td style="text-align: left;">Negativo <span class="math inline">−</span></td>
 <td style="text-align: center;"><span style="color: #fe375a">Falso negativo $FN$</span></td>
 <td style="text-align: center;"><span style="color: #66ff88">Verdadero Negativo $VN$</span></td>
 </tr>
@@ -473,8 +480,7 @@ La fiabilidad del test depende también de la prevalencia de la enfermedad.
 
 **Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
 
-<div class="container"> 
-<div class="col"> 
+<div id="left"> 
 Prevalencia 1%
 <br/>
 <table class=colortable>
@@ -499,7 +505,7 @@ Prevalencia 1%
 </table>
 </div>
 
-<div class="col"> 
+<div id="right"> 
 Prevalencia 10%
 <br/>
 <table class=colortable>
@@ -523,7 +529,6 @@ Prevalencia 10%
 </tbody>
 </table>
 </div>
-</div>
 
 --
 
@@ -531,14 +536,16 @@ Prevalencia 10%
 
 **Ejemplo**
 
-<div class="container"> 
-<div class="col"> 
+<div id="left">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
 <img src="img/resultados-test0.01-0.7-0.95.svg">
+</a>
 </div>
 
-<div class="col"> 
+<div id="right">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
 <img src="img/resultados-test0.1-0.7-0.95.svg">
-</div>
+</a>
 </div>
 
 --
@@ -578,12 +585,9 @@ Utilizaremos un test específico cuando:
 
 ## Valores predictivos
 
-**Ejemplo**
-
 **Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
 
-<div class="container"> 
-<div class="col"> 
+<div id="left"> 
 Prevalencia 1%
 <br/>
 <table class=colortable>
@@ -611,7 +615,7 @@ $$VPP = \frac{7}{7+50} = 0.123$$
 $$VPN = \frac{940}{3+940} = 0.997$$
 </div>
 
-<div class="col"> 
+<div id="right"> 
 Prevalencia 10%
 <br/>
 <table class=colortable>
@@ -637,7 +641,6 @@ Prevalencia 10%
 $$VPP = \frac{70}{70+45} = 0.609$$
 $$VPN = \frac{855}{30+855} = 0.966$$
 </div>
-</div>
 
 --
 
@@ -652,7 +655,7 @@ $$
 
 --
 
-## Aplicaciones al COVID-19
+## Aplicaciones a la COVID
 
 - [Fiabilidad del diagnóstico por PCR](https://www.rcpjournals.org/content/clinmedicine/20/6/e209)
 - [Fiabilidad del diagnóstico por el test de antígenos](https://www.cdc.gov/mmwr/volumes/69/wr/mm695152a3.htm)
@@ -666,3 +669,4 @@ $$
 - [R Epidemic Consortium (RECON)](https://www.repidemicsconsortium.org/)
 - [Analysis of epidemiological data using R and Epicalc](https://cran.r-project.org/doc/contrib/Epicalc_Book.pdf)
 - [R resources about COVID-19](https://statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/#coronavirus)
+- [Aplicación para el análisis de la fiabilidad de test diagnósticos](http://nube.aprendeconalf.es/shiny/diagnostic-test/)

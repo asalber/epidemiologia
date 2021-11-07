@@ -61,18 +61,19 @@
 .reveal h5,
 .reveal h6 {
     margin: 0 0 20px;
-    color: deeppink;
+    color: #fe375a;
     font-family: "Open Sans", Helvetica, sans-serif;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: normal;
     text-transform: none;
-    text-shadow: none;
+    /* text-shadow: none; */
     word-wrap: break-word;
 }
 
 .reveal h1 {
     font-size: 2em;
+    text-shadow: 2px 2px 3px #000000;
 }
 
 .reveal h2 {
@@ -90,11 +91,6 @@
     display: inline-block;
     padding: 5px 15px;
 }
-
-.reveal h1 {
-    text-shadow: none;
-}
-
 
 /* LISTS */
 
@@ -117,27 +113,26 @@
 
 /* TABLES */
 
-table.colortable td:hover {
+.reveal table {
+    border-bottom: 2pt;
+
+}
+
+.reveal table.colortable td:hover {
     background-color: #FF3333;
 }
 
 
-/* 
-table.colortable tr:nth-child(even) {
+
+/* table.colortable tr:nth-child(even) {
     background-color: #333333;
 }
-*/
 
 table.colortable th {
     font-weight: 400;
     background-color: #333333;
     text-shadow: none;
-}
-
-table.plain td {
-    border-bottom: 0;
-}
-
+} */
 
 /* IMAGES */
 
@@ -165,7 +160,7 @@ span.footnote {
 /* LINKS */
 
 .reveal a {
-    color: #A7e22e;
+    color: #ff9900;
     text-decoration: none;
     -webkit-transition: color 0.15s ease;
     -moz-transition: color 0.15s ease;
@@ -265,6 +260,14 @@ span.footnote {
     width: 50%;
 }
 
+.container{
+    display: flex;
+}
+
+.col{
+    flex: 1;
+}
+
 /* ROTATE TEXT */
 td.rotate {
     /* Something you can count on */
@@ -284,66 +287,13 @@ td.rotate > div {
     text-align: left;
 }
 
-/* Add fontawesome */
-/* .reveal i {
-    font-family: 'FontAwesome';
-    font-style: normal;
-} */
-
-/* Make blokquotes wider */
+/* Make blockquotes wider and with a different color */
 .reveal blockquote {
-    width: 95%;
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
     font-style: normal;
-}
-
-
-#title {
-    color: deeppink;
-    font-size: 2em;
-    font-weight: 600;
-    text-align: center;
-  }
-  
-#bright {
-    color: deeppink;
-}
-
-#left {
-    margin: 10px 0 15px 20px;
-    text-align: center;
-    float: left;
-    z-index:-10;
-    width:48%;
-    font-size: 0.85em;
-    line-height: 1.5;
-}
-
-#right {
-    margin: 10px 0 15px 0;
-    float: right;
-    text-align: center;
-    z-index:-10;
-    width:48%;
-    font-size: 0.85em;
-    line-height: 1.5;
-}
-
-#dark_back {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 20px;
-}
-
-/* .reveal .fa {
-    font-family: 'FontAwesome';
-} */
-
-#logo {
-    position: relative;
-}
-
-#logo img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    color: #721a18;
+    background-color: #f8d6d5;
+    border-radius: 0.25rem;
 }
