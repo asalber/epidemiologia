@@ -85,6 +85,7 @@ Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es de
 - Sensibilidad
 - Especificidad
 - Valores predictivos
+- Curva ROC
 
 </div>
 
@@ -653,6 +654,29 @@ VPN>0.5 & \Rightarrow & \mbox{Descartar la enfermedad}
 \end{array}
 $$
 
+## Curva ROC
+
+En los test diagnósticos basado en la medición de una variable cuantitativa (como por ejemplo los test de antígenos para la COVID) la sensibilidad y la especificidad dependen el umbral fijado para dar un positivo. 
+
+![Curva ROC](img/curva-roc.png)
+
+--
+
+
+
+### Interpretación de la curva ROC
+
+- El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).
+- La diagonal representa un test con un diagnóstico aleatorio.
+- Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como _AUC_ (_area under the curve_). Según del valor de la AUC, se tiene
+
+- 0.5: Diagnóstico aleatorio.
+- [0.5, 0.6): Test malo.
+- [0.6, 0.75): Test regular.
+- [0.75, 0.9): Test bueno.
+- [0.9, 0.97): Test muy bueno.
+- [0.97, 1): Test excelente.
+
 --
 
 ## Aplicaciones a la COVID
@@ -660,6 +684,17 @@ $$
 - [Fiabilidad del diagnóstico por PCR](https://www.rcpjournals.org/content/clinmedicine/20/6/e209)
 - [Fiabilidad del diagnóstico por el test de antígenos](https://www.cdc.gov/mmwr/volumes/69/wr/mm695152a3.htm)
 - [Comparativa de test](https://academic.oup.com/ajcp/article/154/5/575/5898531)
+- [Test comerciales](https://www.dosfarma.com/salud/test-analisis/test-antigenos-covid/)
+
+--
+
+## Algunas consideraciones en el caso de la COVID
+
+Los test de antígenos son más rápidos que las PCR pero son menos fiables:
+
+- Menos sensibles $\Rightarrow$ más falsos negativos.
+
+- Menos específicos $\Rightarrow$ más falsos positivos.
 
 ---
 
