@@ -1,196 +1,423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>Fundamentos probabilísticos de la Epidemiología</title>
-    <link rel="shortcut icon" href="./favicon.ico"/>
-    <link rel="stylesheet" href="./dist/reveal.css" />
-    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/monokai.css" />
-    <link rel="stylesheet" href="./_assets/bootstrap-light.css" />
-    <link rel="stylesheet" href="./_assets/custom.css" />
-    <script src="https://kit.fontawesome.com/c743eb3668.js" crossorigin="anonymous"></script>
+<head>
+  <meta charset="utf-8">
 
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides"><section  data-markdown><script type="text/template">
+  <title>Fundamentos probabilísticos de la Epidemiología</title>
 
-<!-- .slide: data-background="./img/virus.jpg" -->
+  <meta name="description" content="">
+  <meta name="author" content="Alfredo Sánchez Alberca">
 
-# Fundamentos probabilísticos de la Epidemiología:<br/>Riesgos y diagnóstico de enfermedades
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- REVEAL CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="libs/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="libs/reveal.js/dist/reveal.css">
+  
+  <link rel="stylesheet" href="libs/reveal.js/dist/theme/black.css" id="theme">
+  
+  
+  <!--
+  <link rel="stylesheet" href="libs/reveal.js/plugin/title-footer/title-footer-mod.css" />
+  -->
 
-<div style="text-align:center; text-shadow: 2px 2px 3px #000000;">
-<b>Alfredo Sánchez Alberca</b><br/>
-(<a href="mailto:asalber@ceu.es">asalber@ceu.es</a>)<br/>
-<a href="http://aprendeconalf.es">http://aprendeconalf.es</a>
+  <!-- MERMAID-->
+  <!--
+  <script src="libs/reveal.js/plugin/mermaid/mermaid.min.js"></script>
+  <style>
+  .mermaid {
+    font-size: 0.5em;
+  }
+  </style>
+  -->
+  
+  <style>
+    [class*=task-list-item] {
+      min-height: 22px;
+      margin-top: 6px!important;
+      margin-bottom: 6px!important;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    [class*=task-list-item]>input:first-child {
+      position: absolute!important;
+      opacity: 0;
+      margin: 0;
+    }
+
+    [class*=task-list-item]>label {
+      padding-left: 29px!important;
+      min-height: 22px;
+      line-height: 22px;
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
+      margin-bottom: 0;
+      font-weight: 400;
+      cursor: pointer;
+    }
+
+    .task-list-item>input:first-child:checked+input[type=hidden]+label::before, .task-list-item>input:first-child:checked+label::before {
+      background-color: #ecf0f1;
+      border-color: #ecf0f1;
+    }
+
+    [class*=task-list-item]>input:first-child+input[type=hidden]+label::before, [class*=task-list-item]>input:first-child+label::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border: 1px solid #D3CFC8;
+      border-radius: 0;
+      margin-left: -29px;
+    }
+
+    [class*=task-list-item]>input:first-child:checked+input[type=hidden]+label::after, [class*=task-list-item]>input:first-child:checked+label::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 10px;
+      border: 2px solid #fff;
+      border-left: none;
+      border-top: none;
+      transform: translate(7.75px,4.5px) rotate(45deg);
+      -ms-transform: translate(7.75px,4.5px) rotate(45deg);
+    }
+
+    .task-list-item>input:first-child:checked+input[type=hidden]+label::after, .task-list-item>input:first-child:checked+label::after {
+      border-bottom-color: #95a5a6;
+      border-right-color: #95a5a6;
+    }
+  </style>
+
+  <!-- Theme used for syntax highlighting of code -->
+  
+  <link rel="stylesheet" href="libs/reveal.js/plugin/highlight/monokai.css">
+  
+
+  
+  <link rel="stylesheet" href="custom.css">
+  
+  
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'libs/reveal.js/dist/print/pdf.css' : 'libs/reveal.js/dist/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <style>
+     .line {
+      display: block;
+    }   
+
+    .line.focus {
+      background: #fdf6e3;
+      color: #657b83;
+    }
+
+    .reveal .slides section .fragment.current-only {
+      visibility: visible;
+      display: none;
+    }
+
+    .reveal .slides section .fragment.current-only.current-fragment {
+      display: block;
+    }
+
+    .line.focus {
+       opacity: 1.0;
+    } 
+
+    @media (device-width: 100vw) and (device-height: 100vh) {
+      .reveal pre code {
+        max-height: 50vh !important;
+      }
+    }
+
+    #logo img {
+      max-height: 3.5em;
+      max-width: none;
+      min-width: 50px;
+    }
+
+    .reveal .slides section .code-presenting-annotation {
+      color: white;
+      background: black;
+      padding: 0px 15px;
+      border-radius: 15px;
+      opacity: 0.75 !important;
+      font-size: 50% !important;
+    }
+  </style>
+  <script>
+    if (window.location.search.match(/print-pdf-now/gi)) {
+      window.print();
+    }
+  </script>
+</head>
+
+<body>
+  
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+      
+  
+    <section data-background="./img/virus.jpeg">
+      <!-- .slide: data-background="./img/virus.jpeg" -->
+<div id="logo">
+<img src="img/logo-uspceu.svg" />
+</div>    
+<p><strong>Semana de la Ciencia y la Innovación 2021</strong></p>
+<div id='title'>
+<p>Epidemiología para tiempos de pandemias</p>
 </div>
-</script></section><section ><section data-markdown><script type="text/template">
-## ¿Qué es la Epidemiología?
+<p>Alfredo Sánchez Alberca <a href="mailto:asalber@ceu.es"><i class='fa fa-envelope'></i></a> <a href="https://twitter.com/aprendeconalf"><i class='fa fa-twitter'></i></a> <a href="https://aprendeconalf.es"><i class='fa fa-home'></i></a></p>
+<p>8 noviembre 2021</p>
 
-Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es decir, el estudio de lo que le ocurre a las poblaciones.
+    </section>
+  
 
-> En el ámbito de la salud pública, la **Epidemilogía** es una rama de la Medicina que se encarga del estudio de la distribución y las causas de eventos relacionados con la salud (normalmente enfermedades) en las poblaciones, y la aplicación de este estudio para controlar problemas públicos de salud.
-
+  
+    <section>
+      <section >
+        <h2><a id="user-content-¿qué-es-la-epidemiología" class="anchor" href="#¿qué-es-la-epidemiología" aria-hidden="true"></a>¿Qué es la Epidemiología?</h2>
+<p>Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es decir, el estudio de lo que le ocurre a las poblaciones.</p>
+<blockquote>
+<p>En el ámbito de la salud pública, la <strong>Epidemilogía</strong> es una rama de la Medicina que se encarga del estudio de la distribución y las causas de eventos relacionados con la salud (normalmente enfermedades) en las poblaciones, y la aplicación de este estudio para controlar problemas públicos de salud.</p>
+</blockquote>
 <img src="img/detective.png" width=80% alt="Detective epidemiólogo">
-</script></section><section data-markdown><script type="text/template">
-## La Epidemiología está de moda
+      </section>
+      
+        <section >
+          <h2><a id="user-content-la-epidemiología-está-de-moda" class="anchor" href="#la-epidemiología-está-de-moda" aria-hidden="true"></a>La Epidemiología está de moda</h2>
+<p><img src="img/fernando-simon.jpg" alt="Fernando Simón"></p>
 
-![Fernando Simón](img/fernando-simon.jpg)
-</script></section><section data-markdown><script type="text/template">
-## Algunos descubrimientos históricos
+        </section>
+      
+        <section >
+          <h2><a id="user-content-algunos-descubrimientos-históricos" class="anchor" href="#algunos-descubrimientos-históricos" aria-hidden="true"></a>Algunos descubrimientos históricos</h2>
+<ul>
+<li>1854: John Snow determina que la causa de la epidemia de cólera que asolaba Lóndres era que el agua estaba contaminada con heces.</li>
+<li>1898: Ronald Ross averigua que el transmisor de la malaria es el el mosquito Anopheles.</li>
+<li>1950: Se descubre que fumar es el principal factor de riesgo de cáncer de pulmón.</li>
+<li>1954: Se valida la primera vacuna contra la poliomielitis (Jonas Salk’s).</li>
+<li>1970: Se observó que el ejercicio físico y una dieta sana reducían el riesgo de sufrir un infarto.</li>
+<li>1983: Robert Gallo, Luc Montagnier y Françoise Barré-Sinoussi identifican el virus que causa el SIDA. Poco después se se observó que el riesgo de contraer el HIV aumentaba con ciertas prácticas sexuales y con el consumo de algunos tipos de drogas.</li>
+</ul>
 
-- 1854: John Snow determina que la causa de la epidemia de cólera que asolaba Lóndres era que el agua estaba contaminada con heces.
-- 1898: Ronald Ross averigua que el transmisor de la malaria es el el mosquito Anopheles.
-- 1950: Se descubre que fumar es el principal factor de riesgo de cáncer de pulmón.
-- 1954: Se valida la primera vacuna contra la poliomielitis (Jonas Salk’s).
-- 1970: Se observó que el ejercicio físico y una dieta sana reducían el riesgo de sufrir un infarto.
-- 1983: Robert Gallo, Luc Montagnier y Françoise Barré-Sinoussi identifican el virus que causa el SIDA. Poco después se se observó que el riesgo de contraer el HIV aumentaba con ciertas prácticas sexuales y con el consumo de algunos tipos de drogas.
-</script></section><section data-markdown><script type="text/template">
-![Términos epidemiología](img/wordcloud.png)
-</script></section><section data-markdown><script type="text/template">
-## Índices epidemiológicos basados en probabilidades
+        </section>
+      
+        <section >
+          <p><img src="img/wordcloud.png" alt="Términos epidemiología"></p>
 
-<div class="container"> 
-<div class="col" data-markdown> 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-índices-epidemiológicos-basados-en-probabilidades" class="anchor" href="#índices-epidemiológicos-basados-en-probabilidades" aria-hidden="true"></a>Índices epidemiológicos basados en probabilidades</h2>
+<div id="left">
 <h3>Riesgos</h3>
-
-- Prevalencia
-- Incidencia
-- Riesgo y Odds
-- Riesgo/Odd relativo
+<ul>
+<li>Prevalencia</li>
+<li>Incidencia</li>
+<li>Riesgo y Odds</li>
+<li>Riesgo/Odd relativo</li>
+</ul>
 </div>
-
-<div class="col" data-markdown> 
+<div id="right">
 <h3>Test diagnósticos</h3>
-
-- Sensibilidad
-- Especificidad
-- Valores predictivos
+<ul>
+<li>Sensibilidad</li>
+<li>Especificidad</li>
+<li>Valores predictivos</li>
+<li>Curva ROC</li>
+</ul>
 </div>
-</script></section></section><section ><section data-markdown><script type="text/template">
-## El concepto de probabilidad
+        </section>
+      
+    </section>
+  
 
-> **Definición clásica (Laplace)** $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$ <!-- .element: class="fragment" -->
+  
+    <section>
+      <section >
+        <h2><a id="user-content-el-concepto-de-probabilidad" class="anchor" href="#el-concepto-de-probabilidad" aria-hidden="true"></a>El concepto de probabilidad</h2>
+<blockquote>
+<p><strong>Definición clásica (Laplace)</strong> $$P(E)=\frac{|E|}{|\Omega|}=\frac{\mbox{Casos favorables a $E$}}{\mbox{Casos posibles}}$$</p>
+</blockquote>
+<p class="fragment"><strong>Ejemplo</strong> Al tirar un dado equilibrado, la probabilidad de sacar un número par $E=\{2, 4, 6\}$ es
+$$ P(E) = \frac{3}{6} = 0.5$$ </p>
 
-**Ejemplo** Al tirar un dado equilibrado, la probabilidad de sacar un número par $E=\\{2, 4, 6\\}$ es
-$$ P(E) = \frac{3}{6} = 0.5$$
-</script></section><section data-markdown><script type="text/template">
-## El concepto de probabilidad
+      </section>
+      
+        <section >
+          <h2><a id="user-content-el-concepto-de-probabilidad" class="anchor" href="#el-concepto-de-probabilidad" aria-hidden="true"></a>El concepto de probabilidad</h2>
+<blockquote>
+<p><strong>Definición frecuentista</strong> $$P(E)\approx f_E = \frac{n_E}{n}=\frac{\mbox{Frecuencia absoluta del evento}}{\mbox{Tamaño muestral}}$$</p>
+</blockquote>
+<p class="fragment"><strong>Ejemplo</strong> Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces la probabilidad de curación del tratamiento es
+$$P(E) = \frac{75}{100} = 0.75 \Rightarrow 75\%$$ </p>
 
-> **Definición frecuentista** $$P(E)\approx f_E = \frac{n_E}{n}=\frac{\mbox{Frecuencia absoluta del evento}}{\mbox{Tamaño muestral}}$$
+        </section>
+      
+        <section >
+          <h2><a id="user-content-algunas-propiedades-de-la-probabilidad" class="anchor" href="#algunas-propiedades-de-la-probabilidad" aria-hidden="true"></a>Algunas propiedades de la probabilidad</h2>
+<p class="fragment">$$0\leq P(E)\leq 1$$  </p>
+<p class="fragment">$$P(\Omega) = P(e_1) + P(e_2) + \cdots + P(e_n) = 1$$ </p>
+<p class="fragment">$$P(\overline E) = 1 - P(E)$$ </p>
 
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces la probabilidad de curación del tratamiento es
+        </section>
+      
+        <section >
+          <h2><a id="user-content-interpretación-de-una-probabilidad" class="anchor" href="#interpretación-de-una-probabilidad" aria-hidden="true"></a>Interpretación de una probabilidad</h2>
+<p>La probabilidad mide la verosimilitud de un suceso.</p>
+<p>De manera informal, se puede decir que la probabilidad mide la creencia o la confianza que tenemos en la ocurrencia de un suceso.</p>
+<ul>
+<li>$P(E) = 0 \Rightarrow$ Mínima verosimilitud</li>
+<li>$P(E) = 0.5 \Rightarrow$ Verosimilitud media (máxima incertidumbre)</li>
+<li>$P(E) = 1 \Rightarrow$ Máxima verosimilitud</li>
+</ul>
+<p><img src="img/balance-probability.svg" alt="Balanza probabilidades"></p>
 
-$$P(C) = \frac{75}{100} = 0.75 \Rightarrow 75\\%$$
-</script></section><section data-markdown><script type="text/template">
-## Algunas propiedades de la probabilidad
+        </section>
+      
+        <section >
+          <h2><a id="user-content-el-concepto-de-odds" class="anchor" href="#el-concepto-de-odds" aria-hidden="true"></a>El concepto de Odds</h2>
+<blockquote>
+<p>$$O(E)=\frac{\mbox{Nº casos con $E$}}{\mbox{Nº casos sin $E$}}=\frac{P(E)}{P(\overline E)}$$</p>
+</blockquote>
+<p class="fragment"><strong>Ejemplo</strong> Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces el odds de curación del tratamiento es $$O(E) = \frac{75}{25} = 3$$ </p>
+<p class="fragment"><i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Un odds puede ser mayor que 1. </p>
 
-$$0\leq P(E)\leq 1$$  <!-- .element: class="fragment" -->
+        </section>
+      
+        <section >
+          <h2><a id="user-content-interpretación-de-un-odds" class="anchor" href="#interpretación-de-un-odds" aria-hidden="true"></a>Interpretación de un Odds</h2>
+<p>Los odds también permiten cuantificar la verosimilitud de un suceso…, pero en una escala diferente, ya que es una razón de probabilidades.</p>
+<ul>
+<li>$O(E) = 0 \Rightarrow$ Mínima verosimilitud</li>
+<li>$O(E) = 1 \Rightarrow$ Verosimilitud media (máxima incertidumbre)</li>
+<li>$O(E) = \infty \Rightarrow$ Máxima verosimilitud</li>
+</ul>
+<p><img src="img/balance-odds.svg" alt="Balanza probabilidades"></p>
 
-$$P(\Omega) = P(e_1) + P(e_2) + \cdots + P(e_n) = 1$$ <!-- .element: class="fragment" -->
+        </section>
+      
+        <section >
+          <h2><a id="user-content-conversión-de-odds-en-probabilidades" class="anchor" href="#conversión-de-odds-en-probabilidades" aria-hidden="true"></a>Conversión de Odds en probabilidades</h2>
+<p>$$ \frac{O(E)}{1 + O(E)} = \frac{\frac{P(E)}{P(\overline E)}}{1 + \frac{P(E)}{P(\overline E)}} = \frac{\frac{P(E)}{P(\overline E)}}{\frac{P(\overline E) + P(E)}{P(\overline E)}} = P(E)$$</p>
+<p class="fragment"><strong>Ejemplo</strong> Se ha aplicado un tratamiento a 100 personas y se han curado 75.
+$$O(E) = \frac{75}{25} = 3 \Rightarrow P(E) = \frac{3}{1+3}=0.75$$ </p>
 
-$$P(\overline E) = 1 - P(E)$$ <!-- .element: class="fragment" -->
-</script></section><section data-markdown><script type="text/template">
-## Interpretación de una probabilidad
+        </section>
+      
+    </section>
+  
 
-La probabilidad mide la verosimilitud de un suceso.
+  
+    <section>
+      <section >
+        <h2><a id="user-content-prevalencia" class="anchor" href="#prevalencia" aria-hidden="true"></a>Prevalencia</h2>
+<blockquote>
+<p>La <em>prevalencia</em> de una enfermedad $E$ es la proporción de personas que tienen la enfermedad en un momento concreto.
+$$\mbox{Prevalencia}(E) = \frac{\mbox{Nº individuos afectados por $E$}}{\mbox{Tamaño poblacional}}$$</p>
+</blockquote>
+<p class="fragment"><strong>Ejemplo</strong>. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{150}{1000}=0.15$$ </p>
 
-De manera informal, se puede decir que la probabilidad mide la creencia o la confianza que tenemos en la ocurrencia de un suceso.
+      </section>
+      
+        <section >
+          <h2><a id="user-content-incidencia-o-riesgo-absoluto" class="anchor" href="#incidencia-o-riesgo-absoluto" aria-hidden="true"></a>Incidencia o riesgo absoluto</h2>
+<blockquote>
+<p>La <em>incidencia</em> o <em>riesgo absoluto</em> de una enfermedad $E$ es la proporción de nuevos casos durante un periodo determinado (por día, por semana, por mes, etc.)
+$$R(E)=\frac{\mbox{Nº nuevos casos con $E$ en el periodo}}{\mbox{Tamaño población en riesgo al comienzo del periodo}}$$</p>
+</blockquote>
+<p class="fragment"><strong>Ejemplo</strong>. Al comienzo del año se tomó una muestra de 1000 personas sin gripe y al finalizar el año 80 tuvieron gripe. La incidencia de la gripe ese año fue
+$$ R(E) = \frac{80}{1000} = 0.08$$ </p>
 
-- $P(E) = 0 \Rightarrow$ Mínima verosimilitud
-- $P(E) = 0.5 \Rightarrow$ Verosimilitud media (máxima incertidumbre)
-- $P(E) = 1 \Rightarrow$ Máxima verosimilitud
+        </section>
+      
+        <section >
+          <h2><a id="user-content-prevalencia-vs-incidencia" class="anchor" href="#prevalencia-vs-incidencia" aria-hidden="true"></a>Prevalencia vs Incidencia</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Tiempo</th>
+<th style="text-align:center">Casos</th>
+<th style="text-align:center">Tipo estudio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prevalencia</td>
+<td style="text-align:center">Puntual</td>
+<td style="text-align:center">Nuevos y existentes</td>
+<td style="text-align:center">Transversal</td>
+</tr>
+<tr>
+<td>Incidencia</td>
+<td style="text-align:center">Periodo</td>
+<td style="text-align:center">Solo nuevos</td>
+<td style="text-align:center">Longitudinal</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>La prevalencia muestra el número de personas afectadas (carga de la enfermedad).</li>
+<li>La incidencia muestra la evolución de la enfermedad y es más útil para detectar brotes y estudiar su causa.</li>
+<li>La incidencia depende sobre todo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad y de lo agresiva que sea.</li>
+</ul>
+<!-- $$ P(E) < R(E) $$ -->
+        </section>
+      
+        <section >
+          <h2><a id="user-content-algunas-consideraciones-en-el-caso-el-covid" class="anchor" href="#algunas-consideraciones-en-el-caso-el-covid" aria-hidden="true"></a>Algunas consideraciones en el caso el COVID</h2>
+<p><a href="https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/situacionActual.htm">Datos del ministerio de sanidad</a></p>
+<p>La incidencia del COVID se suele dar sobre un periodo de dos semanas (14 días) aunque no siempre.</p>
+<p>Los datos son poco precisos y subestiman el riesgo del COVID:</p>
+<ul>
+<li>Muchos asintomáticos no son detectados.</li>
+<li>La detección de casos es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos)</li>
+<li>Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).</li>
+</ul>
 
-![Balanza probabilidades](img/balance-probability.svg)
-</script></section><section data-markdown><script type="text/template">
-## El concepto de Odds
+        </section>
+      
+    </section>
+  
 
-> $$O(E)=\frac{\mbox{Nº nuevos casos con $E$}}{\mbox{Nº casos sin $E$}}=\frac{P(E)}{P(\overline E)}$$
-
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75, entonces el odds de curación del tratamiento es
-
-$$O(C) = \frac{75}{25} = 3$$
-
-<i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Un odds puede ser mayor que 1.
-</script></section><section data-markdown><script type="text/template">
-## Interpretación de un Odds
-
-Los odds también permiten cuantificar la verosimilitud de un suceso..., pero en una escala diferente, ya que es una razón de probabilidades.
-
-- $O(E) = 0 \Rightarrow$ Mínima verosimilitud
-- $O(E) = 1 \Rightarrow$ Verosimilitud media (máxima incertidumbre)
-- $O(E) = \infty \Rightarrow$ Máxima verosimilitud
-
-![Balanza probabilidades](img/balance-odds.svg)
-</script></section><section data-markdown><script type="text/template">
-## Conversión de Odds en probabilidades
-
-$$ \frac{O(E)}{1 + O(E)} = \frac{\frac{P(E)}{P(\overline E)}}{1 + \frac{P(E)}{P(\overline E)}} = \frac{\frac{P(E)}{P(\overline E)}}{\frac{P(\overline E) + P(E)}{P(\overline E)}} = P(E)$$
-
-**Ejemplo** Se ha aplicado un tratamiento a 100 personas y se han curado 75.
-
-$$O(C) = \frac{75}{25} = 3 \Rightarrow P(C) = \frac{3}{1+3}=0.75$$
-</script></section></section><section ><section data-markdown><script type="text/template">
-## Prevalencia
-
-> La _prevalencia_ de una enfermedad es la proporción de personas que tienen la enfermedad en un momento concreto.
-> $$\mbox{Prevalencia}(E) = \frac{\mbox{Nº individuos afectados por $E$}}{\mbox{Tamaño poblacional}}$$
-
-**Ejemplo**. En una muestra de 1000 personas 150 tenían gripe. La prevalencia de la gripe es aproximadamente $$\frac{150}{1000}=0.15$$
-</script></section><section data-markdown><script type="text/template">
-## Incidencia o riesgo absoluto
-
-> La _incidencia_ o _riesgo absoluto_ es la proporción de nuevos casos durante un periodo determinado (por día, por semana, por mes, etc.)
-> $$R(E)=\frac{\mbox{Nº nuevos casos con $E$ en el periodo}}{\mbox{Tamaño población en riesgo al comienzo del periodo}}$$
-
-**Ejemplo**. Al comienzo del año se tomó una muestra de 1000 personas sin gripe y al finalizar el año 80 tuvieron gripe. La incidencia de la gripe ese año fue
-
-$$ R(E) = \frac{80}{1000} = 0.08$$
-</script></section><section data-markdown><script type="text/template">
-## Prevalencia vs Incidencia
-
-|             | Tiempo  |        Casos        | Tipo estudio |
-| ----------- | :-----: | :-----------------: | :----------: |
-| Prevalencia | Puntual | Nuevos y existentes | Transversal  |
-| Incidencia  | Periodo |     Solo nuevos     | Longitudinal |
-
-- La prevalencia muestra el número de personas afectadas (carga de la enfermedad).
-- La incidencia muestra la evolución de la enfermedad y es más útil para detectar brotes y estudiar su causa.
-- La incidencia depende solo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad.
-
-$$ P(E) < R(E) $$
-</script></section><section data-markdown><script type="text/template">
-## Algunas consideraciones en el caso el COVID
-
-[Datos del ministerio de sanidad](https://www.mscbs.gob.es/profesionales/saludPublica/ccayes/alertasActual/nCov/situacionActual.htm)
-
-La incidencia del COVID se suele dar sobre un periodo de dos semanas (14 días) aunque no siempre.
-
-Los datos son poco precisos y subestiman el riesgo del COVID:
-
-- Muchos asintomáticos no son detectados.
-- La detección de casos es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos)
-- Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).
-</script></section></section><section ><section data-markdown><script type="text/template">
-## Comparación de riesgos
-
-Dos grupos:
-
-- Grupo tratamiento $T$: Individuos expuestos a un factor.
-- Grupo control $C$: Individuos no expuestos al factor.
-
+  
+    <section>
+      <section >
+        <h2><a id="user-content-comparación-de-riesgos" class="anchor" href="#comparación-de-riesgos" aria-hidden="true"></a>Comparación de riesgos</h2>
+<p>Dos grupos:</p>
+<ul>
+<li>Grupo tratamiento $T$: Individuos expuestos a un factor.</li>
+<li>Grupo control $C$: Individuos no expuestos al factor.</li>
+</ul>
 <br/>
 <br/>
-
 <table class="colortable">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: left;">Suceso<span class="math inline">$E$</span></th>
-<th style="text-align: left;">No suceso <span class="math inline">$\overline E$</span></th>
+<th style="text-align: left;"><span class="math inline">$E$</span></th>
+<th style="text-align: left;"><span class="math inline">$\overline E$</span></th>
 </tr>
 </thead>
 <tbody>
@@ -205,12 +432,14 @@ Dos grupos:
 <td></td>
 </tbody>
 </table>
-</script></section><section data-markdown><script type="text/template">
-## Riesgo relativo
-
-> $$RR(E)=\frac{\mbox{Riesgo grupo tratamiento}}{\mbox{Riesgo grupo control}}=\frac{R_T(E)}{R_C(E)}=\frac{a/(a+b)}{c/(c+d)}$$
-
-**Ejemplo** 
+      </section>
+      
+        <section >
+          <h2><a id="user-content-riesgo-relativo" class="anchor" href="#riesgo-relativo" aria-hidden="true"></a>Riesgo relativo</h2>
+<blockquote>
+<p>$$RR(E)=\frac{\mbox{Riesgo grupo tratamiento}}{\mbox{Riesgo grupo control}}=\frac{R_T(E)}{R_C(E)}=\frac{a/(a+b)}{c/(c+d)}$$</p>
+</blockquote>
+<p><strong>Ejemplo</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -233,22 +462,27 @@ Dos grupos:
 <td></td>
 </tbody>
 </table>
+<p>$$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$</p>
 
-$$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
-</script></section><section data-markdown><script type="text/template">
-## Interpretación del riesgo relativo
+        </section>
+      
+        <section >
+          <h2><a id="user-content-interpretación-del-riesgo-relativo" class="anchor" href="#interpretación-del-riesgo-relativo" aria-hidden="true"></a>Interpretación del riesgo relativo</h2>
+<ul>
+<li>$RR=1$ $\Rightarrow$ No hay asociación entre el suceso y la exposición al factor.</li>
+<li>$RR&lt;1$ $\Rightarrow$ La exposición al factor disminuye el riesgo del suceso.</li>
+<li>$RR&gt;1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.</li>
+</ul>
+<p><img src="img/escala-riesgo-relativo.png" alt="Interpretación riesgo relativo"></p>
 
-- $RR=1$ $\Rightarrow$ No hay asociación entre el suceso y la exposición al factor.
-- $RR<1$ $\Rightarrow$ La exposición al factor disminuye el riesgo del suceso.
-- $RR>1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.
-
-![Interpretación riesgo relativo](img/escala-riesgo-relativo.png)
-</script></section><section data-markdown><script type="text/template">
-## Odds ratio
-
-> $$OR(E)=\frac{\mbox{Odds grupo tratamiento}}{\mbox{Odds grupo control}}=\frac{O_T(E)}{O_C(E)}=\frac{a/b}{c/d}=\frac{ad}{bc}$$
-
-**Ejemplo** 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-odds-ratio" class="anchor" href="#odds-ratio" aria-hidden="true"></a>Odds ratio</h2>
+<blockquote>
+<p>$$OR(E)=\frac{\mbox{Odds grupo tratamiento}}{\mbox{Odds grupo control}}=\frac{O_T(E)}{O_C(E)}=\frac{a/b}{c/d}=\frac{ad}{bc}$$</p>
+</blockquote>
+<p><strong>Ejemplo</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -271,26 +505,31 @@ $$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
 <td></td>
 </tbody>
 </table>
+<p>$$OR(G) = \frac{20/480}{80/420} = 0.22$$</p>
 
-$$OR(G) = \frac{20/480}{80/420} = 0.22$$
-</script></section><section data-markdown><script type="text/template">
-## Interpretación del odds ratio
+        </section>
+      
+        <section >
+          <h2><a id="user-content-interpretación-del-odds-ratio" class="anchor" href="#interpretación-del-odds-ratio" aria-hidden="true"></a>Interpretación del odds ratio</h2>
+<ul>
+<li>$OR=1$ $\Rightarrow$ No existe asociación entre el suceso y la exposición al factor.</li>
+<li>$OR&lt;1$ $\Rightarrow$ La exposición al factor disminuye el riesgo del suceso.</li>
+<li>$OR&gt;1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.</li>
+</ul>
 
-- $OR=1$ $\Rightarrow$ No existe asociación entre el suceso y la exposición al factor.
-- $OR<1$ $\Rightarrow$ La exposición al factor disminuye el riesgo del suceso.
-- $OR>1$ $\Rightarrow$ La exposición al factor aumenta el riesgo del suceso.
-</script></section><section data-markdown><script type="text/template">
-## Riesgo relativo vs Odds ratio
+        </section>
+      
+        <section >
+          <h2><a id="user-content-riesgo-relativo-vs-odds-ratio" class="anchor" href="#riesgo-relativo-vs-odds-ratio" aria-hidden="true"></a>Riesgo relativo vs Odds ratio</h2>
+<p>El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.</p>
+<p>La interpretación del odds ratio es más enrevesada porque es contrafactual, ya que da cuántas veces es más frecuente el suceso en el grupo tratamiento en comparación con el control, asumiendo que en el
+grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es que no depende de la incidencia de la enfermedad.</p>
 
-El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.
-
-La interpretación del odds ratio es más enrevesada porque es contrafactual, ya que da cuántas veces es más frecuente el suceso en el grupo tratamiento en comparación con el control, asumiendo que en el
-grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es que no depende de la incidencia de la enfermedad.
-</script></section><section data-markdown><script type="text/template">
-## Riesgo relativo vs Odds ratio
-
-<div class="container"> 
-<div class="col"> 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-riesgo-relativo-vs-odds-ratio" class="anchor" href="#riesgo-relativo-vs-odds-ratio" aria-hidden="true"></a>Riesgo relativo vs Odds ratio</h2>
+<div id="left">
 <b>Muestra 1</b>
 <br/>
 <table>
@@ -312,19 +551,19 @@ grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es q
 <td style="text-align: center;"><span class="math inline">40</span></td>
 <td style="text-align: center;"><span class="math inline">320</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
-
-$$
+<p>$$
 \begin{aligned}
-RR(E) &= \frac{60/(60+80)}{40/(40+320)} = 3.86
+P(E) &amp;= \frac{60+40}{60+40+80+320} = 0.2\newline
+RR(E) &amp;= \frac{60/(60+80)}{40/(40+320)} = 3.86
 \newline
-OR(E) &= \frac{60/80}{40/320} = 6
+OR(E) &amp;= \frac{60/80}{40/320} = 6
 \end{aligned}
-$$
+$$</p>
 </div>
-
-<div class="col" data-markdown> 
+<div id="right">
 <b>Muestra 2</b>
 <br/>
 <table>
@@ -346,84 +585,98 @@ $$
 <td style="text-align: center;"><span class="math inline">40</span></td>
 <td style="text-align: center;"><span class="math inline">640</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
-
-$$
+<p>$$
 \begin{aligned}
-RR(E) &= \frac{60/(60+160)}{40/(40+640)} = 4.64
+P(E) &amp;= \frac{60+40}{60+40+160+640} = 0.11\newline
+RR(E) &amp;= \frac{60/(60+160)}{40/(40+640)} = 4.64
 \newline
-OR(E) &= \frac{60/160}{40/640} = 6 
+OR(E) &amp;= \frac{60/160}{40/640} = 6
 \end{aligned}
-$$
+$$</p>
 </div>
-</div>
-</script></section><section data-markdown><script type="text/template">
-## Aplicación al COVID-19
+        </section>
+      
+        <section >
+          <h2><a id="user-content-aplicación-a-la-covid" class="anchor" href="#aplicación-a-la-covid" aria-hidden="true"></a>Aplicación a la COVID</h2>
+<ul>
+<li><a href="https://www.npr.org/sections/coronavirus-live-updates/2020/03/22/819846180/study-calculates-just-how-much-age-medical-conditions-raise-odds-of-severe-covid?t=1614095513052">La edad aumenta la gravedad</a></li>
+<li><a href="https://www.aarp.org/espanol/salud/enfermedades-y-tratamientos/info-2020/tipo-de-sangre-y-riesgo-de-covid.html">El riesgo de infección depende del grupo sanguíneo</a></li>
+<li><a href="https://medicalxpress.com/news/2021-01-vitamin-d-deficiency-covid-.html">El déficit de vitamina D aumenta el riesgo de infección</a></li>
+<li><a href="https://www.sciencedaily.com/releases/2021/02/210209083524.htm">Las personas con demencia tienen mayor riesgo de infectase</a></li>
+<li><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2007764">El Remdesivir acelera la recuperación</a></li>
+</ul>
 
-- [La edad aumenta la gravedad](https://www.npr.org/sections/coronavirus-live-updates/2020/03/22/819846180/study-calculates-just-how-much-age-medical-conditions-raise-odds-of-severe-covid?t=1614095513052)
-- [El riesgo de infección depende del grupo sanguíneo](https://www.aarp.org/espanol/salud/enfermedades-y-tratamientos/info-2020/tipo-de-sangre-y-riesgo-de-covid.html)
-- [El déficit de vitamina D aumenta el riesgo de infección](https://medicalxpress.com/news/2021-01-vitamin-d-deficiency-covid-.html)
-- [Las personas con demencia tienen mayor riesgo de infectase](https://www.sciencedaily.com/releases/2021/02/210209083524.htm)
-- [El Remdesivir acelera la recuperación](https://www.nejm.org/doi/full/10.1056/NEJMoa2007764)
-</script></section></section><section ><section data-markdown><script type="text/template">
-## Tests diagnósticos
+        </section>
+      
+    </section>
+  
 
-> Un test diagnóstico es un test usado para diagnosticar una enfermedad o descartarla.  
-
-Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y negativo (-) en contra de ella.
-
+  
+    <section>
+      <section >
+        <h2><a id="user-content-tests-diagnósticos" class="anchor" href="#tests-diagnósticos" aria-hidden="true"></a>Tests diagnósticos</h2>
+<blockquote>
+<p>Un test diagnóstico es un test usado para diagnosticar una enfermedad o descartarla.</p>
+</blockquote>
+<p>Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y negativo (-) en contra de ella.</p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">Presencia enfermedad $E$</th>
-<th style="text-align: center;">Ausencia enfermedad $\overline E$</th>
+<th style="text-align: left;">Test</th>
+<th style="text-align: center;">$E$</th>
+<th style="text-align: center;">$\overline E$</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Test positivo <span class="math inline">+</span></td>
+<td style="text-align: left;">Positivo <span class="math inline">+</span></td>
 <td style="text-align: center;"><span style="color: #66ff88">Verdadero positivo $VP$</span></td>
 <td style="text-align: center;"><span style="color: #fe375a">Falso positivo $FP$</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Test negativo <span class="math inline">−</span></td>
+<td style="text-align: left;">Negativo <span class="math inline">−</span></td>
 <td style="text-align: center;"><span style="color: #fe375a">Falso negativo $FN$</span></td>
 <td style="text-align: center;"><span style="color: #66ff88">Verdadero Negativo $VN$</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
-</script></section><section data-markdown><script type="text/template">
-## Sensibilidad y especificidad de un test
+      </section>
+      
+        <section >
+          <h2><a id="user-content-sensibilidad-y-especificidad-de-un-test" class="anchor" href="#sensibilidad-y-especificidad-de-un-test" aria-hidden="true"></a>Sensibilidad y especificidad de un test</h2>
+<p>La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.</p>
+<blockquote>
+<p><strong>Sensibilidad</strong> La <em>sensibilidad</em> de un test diagnóstico es la proporción de resultados positivos del test en personas con la enfermedad,
+$$P(+|E)=\frac{VP}{VP+FN}$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Especificidad</strong>
+La <em>especificidad</em> de un test diagnóstico es la proporción de resultados negativos del test en personas sin la enfermedad,
+$$P(-|\overline{E})=\frac{VN}{VN+FP}$$</p>
+</blockquote>
 
-La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.
+        </section>
+      
+        <section >
+          <h2><a id="user-content-sensibilidad-y-especificidad-de-un-test" class="anchor" href="#sensibilidad-y-especificidad-de-un-test" aria-hidden="true"></a>Sensibilidad y especificidad de un test</h2>
+<p><strong>Ejemplo</strong></p>
+<p>Un test de antígenos para detectar el SARS-COV-2 tiene una sensibilidad del 70% y una especificidad del 95%.</p>
+<ul>
+<li>Si aplicamos el test a 100 enfermos dará 70 positivos y 30 negativos.</li>
+<li>Si aplicamos el test a 100 sanos dará 95 negativos y 5 positivos.</li>
+</ul>
 
-> **Sensibilidad**  
-> La _sensibilidad_ de un test diagnóstico es la proporción de resultados positivos del test en personas con la enfermedad,
-> $$P(+|E)=\frac{VP}{VP+FN}$$
-
-> **Especificidad**
-> La _especificidad_ de un test diagnóstico es la proporción de resultados negativos del test en personas sin la enfermedad,
-> $$P(-|\overline{E})=\frac{VN}{VN+FP}$$
-</script></section><section data-markdown><script type="text/template">
-## Sensibilidad y especificidad de un test
-
-**Ejemplo**
-
-Un test de antígenos para detectar el SARS-COV-2 tiene una sensibilidad del 70% y una especificidad del 95%.
-
-- Si aplicamos el test a 100 enfermos dará 70 positivos y 30 negativos.
-- Si aplicamos el test a 100 sanos dará 95 negativos y 5 positivos.
-</script></section><section data-markdown><script type="text/template">
-## Fiabilidad de un test diagnóstico
-
-La fiabilidad del test depende también de la prevalencia de la enfermedad.
-
-**Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
-
-<div class="container"> 
-<div class="col"> 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-fiabilidad-de-un-test-diagnóstico" class="anchor" href="#fiabilidad-de-un-test-diagnóstico" aria-hidden="true"></a>Fiabilidad de un test diagnóstico</h2>
+<p>La fiabilidad del test depende también de la prevalencia de la enfermedad.</p>
+<p><strong>Ejemplo</strong>. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:</p>
+<div id="left"> 
 Prevalencia 1%
 <br/>
 <table class=colortable>
@@ -447,8 +700,7 @@ Prevalencia 1%
 </tbody>
 </table>
 </div>
-
-<div class="col"> 
+<div id="right"> 
 Prevalencia 10%
 <br/>
 <table class=colortable>
@@ -472,59 +724,72 @@ Prevalencia 10%
 </tbody>
 </table>
 </div>
-</div>
-</script></section><section data-markdown><script type="text/template">
-## Fiabilidad de un test diagnóstico
-
-**Ejemplo**
-
-<div class="container"> 
-<div class="col"> 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-fiabilidad-de-un-test-diagnóstico" class="anchor" href="#fiabilidad-de-un-test-diagnóstico" aria-hidden="true"></a>Fiabilidad de un test diagnóstico</h2>
+<p><strong>Ejemplo</strong></p>
+<div id="left">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
 <img src="img/resultados-test0.01-0.7-0.95.svg">
+</a>
 </div>
-
-<div class="col"> 
+<div id="right">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
 <img src="img/resultados-test0.1-0.7-0.95.svg">
+</a>
 </div>
-</div>
-</script></section><section data-markdown><script type="text/template">
-## Cuándo usar un test más sensible o más específico
+        </section>
+      
+        <section >
+          <h2><a id="user-content-cuándo-usar-un-test-más-sensible-o-más-específico" class="anchor" href="#cuándo-usar-un-test-más-sensible-o-más-específico" aria-hidden="true"></a>Cuándo usar un test más sensible o más específico</h2>
+<p>Utilizaremos un test sensible cuando:</p>
+<ul>
+<li>
+<p>La enfermedad es grave y es importante detectarla.</p>
+</li>
+<li>
+<p>La enfermedad es curable.</p>
+</li>
+<li>
+<p>Los falsos positivos no provocan traumas serios.</p>
+</li>
+</ul>
+<p>Utilizaremos un test específico cuando:</p>
+<ul>
+<li>
+<p>La enfermedad es importante pero difícil o imposible de curar.</p>
+</li>
+<li>
+<p>Los falsos positivos pueden provocar traumas serios.</p>
+</li>
+<li>
+<p>El tratamiento de los falsos positivos puede tener graves
+consecuencias.</p>
+</li>
+</ul>
 
-Utilizaremos un test sensible cuando:
+        </section>
+      
+        <section >
+          <h2><a id="user-content-valores-predictivos-de-un-test" class="anchor" href="#valores-predictivos-de-un-test" aria-hidden="true"></a>Valores predictivos de un test</h2>
+<blockquote>
+<p><strong>Valor predictivo positivo</strong><br>
+El <em>valor predictivo positivo</em> de un test diagnóstico es la proporción de personas con la enfermedad entre las personas con resultado positivo en el test,
+$$P(E|+) = \frac{VP}{VP+FP}$$</p>
+</blockquote>
+<blockquote>
+<p><strong>Valor predictivo negativo</strong><br>
+El <em>valor predictivo negativo</em> de un test diagnóstico es la proporción de personas sin la enfermedad entre las personas con resultado negativo en el test,
+$$P(\overline{E}|-) = \frac{VN}{VN+FN}$$</p>
+</blockquote>
 
-- La enfermedad es grave y es importante detectarla.
-
-- La enfermedad es curable.
-
-- Los falsos positivos no provocan traumas serios.
-
-Utilizaremos un test específico cuando:
-
-- La enfermedad es importante pero difícil o imposible de curar.
-
-- Los falsos positivos pueden provocar traumas serios.
-
-- El tratamiento de los falsos positivos puede tener graves
-  consecuencias.
-</script></section><section data-markdown><script type="text/template">
-## Valores predictivos de un test
-
-> **Valor predictivo positivo**  
-> El _valor predictivo positivo_ de un test diagnóstico es la proporción de personas con la enfermedad entre las personas con resultado positivo en el test,
-> $$P(E|+) = \frac{VP}{VP+FP}$$
-
-> **Valor predictivo negativo**  
-> El _valor predictivo negativo_ de un test diagnóstico es la proporción de personas sin la enfermedad entre las personas con resultado negativo en el test,
-> $$P(\overline{E}|-) = \frac{VN}{VN+FN}$$
-</script></section><section data-markdown><script type="text/template">
-## Valores predictivos
-
-**Ejemplo**
-
-**Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
-
-<div class="container"> 
-<div class="col"> 
+        </section>
+      
+        <section >
+          <h2><a id="user-content-valores-predictivos" class="anchor" href="#valores-predictivos" aria-hidden="true"></a>Valores predictivos</h2>
+<p><strong>Ejemplo</strong>. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:</p>
+<div id="left"> 
 Prevalencia 1%
 <br/>
 <table class=colortable>
@@ -547,12 +812,10 @@ Prevalencia 1%
 <td></td>
 </tbody>
 </table>
-
-$$VPP = \frac{7}{7+50} = 0.123$$
-$$VPN = \frac{940}{3+940} = 0.997$$
+<p>$$VPP = \frac{7}{7+50} = 0.123$$
+$$VPN = \frac{940}{3+940} = 0.997$$</p>
 </div>
-
-<div class="col"> 
+<div id="right"> 
 Prevalencia 10%
 <br/>
 <table class=colortable>
@@ -578,84 +841,338 @@ Prevalencia 10%
 $$VPP = \frac{70}{70+45} = 0.609$$
 $$VPN = \frac{855}{30+855} = 0.966$$
 </div>
-</div>
-</script></section><section data-markdown><script type="text/template">
-## Interpretación de los valores predictivos
-
-$$
+        </section>
+      
+        <section >
+          <h2><a id="user-content-interpretación-de-los-valores-predictivos" class="anchor" href="#interpretación-de-los-valores-predictivos" aria-hidden="true"></a>Interpretación de los valores predictivos</h2>
+<p>$$
 \begin{array}{rcl}
-VPP>0.5 & \Rightarrow & \mbox{Diagnosticar la enfermedad}\newline
-VPN>0.5 & \Rightarrow & \mbox{Descartar la enfermedad}
+VPP&gt;0.5 &amp; \Rightarrow &amp; \mbox{Diagnosticar la enfermedad}\newline
+VPN&gt;0.5 &amp; \Rightarrow &amp; \mbox{Descartar la enfermedad}
 \end{array}
-$$
-</script></section><section data-markdown><script type="text/template">
-## Aplicaciones al COVID-19
+$$</p>
 
-- [Fiabilidad del diagnóstico por PCR](https://www.rcpjournals.org/content/clinmedicine/20/6/e209)
-- [Fiabilidad del diagnóstico por el test de antígenos](https://www.cdc.gov/mmwr/volumes/69/wr/mm695152a3.htm)
-- [Comparativa de test](https://academic.oup.com/ajcp/article/154/5/575/5898531)
-</script></section></section><section  data-markdown><script type="text/template">
-## Referencias
+        </section>
+      
+        <section >
+          <h2><a id="user-content-curva-roc" class="anchor" href="#curva-roc" aria-hidden="true"></a>Curva ROC</h2>
+<p>En los test diagnósticos basado en la medición de una variable cuantitativa (como por ejemplo los test de antígenos para la COVID) la sensibilidad y la especificidad dependen el umbral fijado para dar un positivo.</p>
+<img src="img/curva-roc.svg" height=400 />
+        </section>
+      
+        <section >
+          <h3><a id="user-content-interpretación-de-la-curva-roc" class="anchor" href="#interpretación-de-la-curva-roc" aria-hidden="true"></a>Interpretación de la curva ROC</h3>
+<ul>
+<li>Cada punto de la curva corresponde a un umbral para el positivo.</li>
+<li>El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).</li>
+<li>La diagonal representa un test con un diagnóstico aleatorio.</li>
+</ul>
 
-- [Acción matemática contra el coronavirus](http://matematicas.uclm.es/cemat/covid19/)
-- [R Epidemic Consortium (RECON)](https://www.repidemicsconsortium.org/)
-- [Analysis of epidemiological data using R and Epicalc](https://cran.r-project.org/doc/contrib/Epicalc_Book.pdf)
-- [R resources about COVID-19](https://statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/#coronavirus)</script></section></div>
+        </section>
+      
+        <section >
+          <h3><a id="user-content-area-debajo-de-la-curva-roc-aur" class="anchor" href="#area-debajo-de-la-curva-roc-aur" aria-hidden="true"></a>Area debajo de la curva ROC (AUR)</h3>
+<p>Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como <em>AUC</em> (<em>area under the curve</em>). Según del valor de la AUC, se tiene</p>
+<ul>
+<li>0.5: Diagnóstico aleatorio.</li>
+<li>[0.5, 0.6): Test malo.</li>
+<li>[0.6, 0.75): Test regular.</li>
+<li>[0.75, 0.9): Test bueno.</li>
+<li>[0.9, 0.97): Test muy bueno.</li>
+<li>[0.97, 1): Test excelente.</li>
+</ul>
+
+        </section>
+      
+        <section >
+          <h2><a id="user-content-aplicaciones-a-la-covid" class="anchor" href="#aplicaciones-a-la-covid" aria-hidden="true"></a>Aplicaciones a la COVID</h2>
+<ul>
+<li><a href="https://www.rcpjournals.org/content/clinmedicine/20/6/e209">Fiabilidad del diagnóstico por PCR</a></li>
+<li><a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm695152a3.htm">Fiabilidad del diagnóstico por el test de antígenos</a></li>
+<li><a href="https://academic.oup.com/ajcp/article/154/5/575/5898531">Comparativa de test</a></li>
+<li><a href="https://www.dosfarma.com/salud/test-analisis/test-antigenos-covid/">Test comerciales</a></li>
+</ul>
+
+        </section>
+      
+        <section >
+          <h2><a id="user-content-algunas-consideraciones-en-el-caso-de-la-covid" class="anchor" href="#algunas-consideraciones-en-el-caso-de-la-covid" aria-hidden="true"></a>Algunas consideraciones en el caso de la COVID</h2>
+<p>Los test de antígenos son más rápidos que las PCR pero son menos fiables:</p>
+<ul>
+<li>
+<p>Menos sensibles $\Rightarrow$ más falsos negativos.</p>
+</li>
+<li>
+<p>Menos específicos $\Rightarrow$ más falsos positivos.</p>
+</li>
+</ul>
+
+        </section>
+      
+    </section>
+  
+
+  
+    <section >
+      <h2><a id="user-content-referencias" class="anchor" href="#referencias" aria-hidden="true"></a>Referencias</h2>
+<ul>
+<li><a href="http://matematicas.uclm.es/cemat/covid19/">Acción matemática contra el coronavirus</a></li>
+<li><a href="https://www.repidemicsconsortium.org/">R Epidemic Consortium (RECON)</a></li>
+<li><a href="https://cran.r-project.org/doc/contrib/Epicalc_Book.pdf">Analysis of epidemiological data using R and Epicalc</a></li>
+<li><a href="https://statsandr.com/blog/top-r-resources-on-covid-19-coronavirus/#coronavirus">R resources about COVID-19</a></li>
+<li><a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/">Aplicación para el análisis de la fiabilidad de test diagnósticos</a></li>
+</ul>
+
+    </section>
+  
+
+
+
     </div>
 
-    <script src="./dist/reveal.js"></script>
+  </div>
 
-    <script src="./plugin/markdown/markdown.js"></script>
-    <script src="./plugin/highlight/highlight.js"></script>
-    <script src="./plugin/zoom/zoom.js"></script>
-    <script src="./plugin/notes/notes.js"></script>
-    <script src="./plugin/math/math.js"></script>
-    <script src="./plugin/chalkboard/plugin.js"></script>
-    <script src="./plugin/menu/menu.js"></script>
-    <script>
-      function extend() {
-        var target = {};
-        for (var i = 0; i < arguments.length; i++) {
-          var source = arguments[i];
-          for (var key in source) {
-            if (source.hasOwnProperty(key)) {
-              target[key] = source[key];
-            }
-          }
-        }
-        return target;
-      }
+  <script src="libs/reveal.js/dist/reveal.js"></script>
 
-      // default options to init reveal.js
-      var defaultOptions = {
+<script src="libs/reveal.js/plugin/zoom/zoom.js"></script>
+
+<script src="libs/reveal.js/plugin/notes/notes.js"></script>
+<script src="libs/reveal.js/plugin/search/search.js"></script>
+<script src="libs/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="libs/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="libs/reveal.js/plugin/math/math.js"></script>
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+
         controls: true,
+        controlsTutorial: true,
+        controlsLayout: 'bottom-right',
+        controlsBackArrows: 'faded',
         progress: true,
+        slideNumber: false,
         history: true,
+        keyboard: true,
+        overview: true,
         center: true,
-        transition: 'default', // none/fade/slide/convex/concave/zoom
-        plugins: [
-          RevealMarkdown,
-          RevealHighlight,
-          RevealZoom,
-          RevealNotes,
-          RevealMath,
-          RevealChalkboard,
-          RevealMenu,
-        ]
-      };
+        touch: true,
+        loop: false,
+        rtl: false,
+        shuffle: false,
+        fragments: true,
+        fragmentInURL: false,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoPlayMedia: false,
+        autoSlide: 0,
+        autoSlideStoppable: true,
+        autoSlideMethod: Reveal.navigateNext,
+        defaultTiming: 120,
+        mouseWheel: false,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: 'default',
+        transitionSpeed: 'default',
+        backgroundTransition: 'default',
+        viewDistance: 3,
+        parallaxBackgroundImage: '',
+        parallaxBackgroundSize: '',
+        parallaxBackgroundHorizontal: 0,
+        parallaxBackgroundVertical: 0,
+        display: 'block',
 
-      // options from URL query string
-      var queryOptions = Reveal().getQueryHash() || {};
+        plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath],
+        
+        math: {
+            mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+            config: 'TeX-AMS_HTML-full',
+            TeX: { Macros: { RR: "{\\bf R}" } }
+        },
+        /*
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            
+            { src: 'libs/reveal.js/3.8.0/plugin/search/search.js', async: true },
+            
 
-      var options = extend(defaultOptions, {"transition":"convex","center":true}, queryOptions);
-    </script>
+            
+            { src: 'libs/reveal.js-plugins/3.8.0/plugin/chalkboard/chalkboard.js' },
+                
 
-    <script src="./_assets/plugin/chalkboard/plugin.js"></script>
-    <script src="./_assets/plugin/menu/menu.js"></script>
-    <script src="./_assets/plugin.js"></script>
+            
 
-    <script>
-      Reveal.initialize(options);
-    </script>
-  </body>
+            
+            { src: 'libs/reveal.js/3.8.0/plugin/title-footer/title-footer.js', async: true, callback: function () { title_footer.initialize(); } },
+            
+            {
+                src: 'libs/highlight.js/9.15.10/reveal-code-focus-1.0.0-mod.js',
+                async: true,
+                callback: function () {
+                    RevealCodeFocus();
+                }
+            },
+            // {src: 'libs/reveal.js/3.8.0/plugin/line-numbers/line-numbers.js'}
+        ],
+        keyboard: {
+            67: function () { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+            66: function () { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+            46: function () { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+            8: function () { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+            68: function () { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+        },
+        chart: {
+            defaults: {
+                global: {
+                    title: { fontColor: "#FFF" },
+                    legend: {
+                        position: "bottom",
+                            labels: { fontColor: "#FFF" },
+                    },
+                    tooltips: {
+                        labels: { fontColor: "#FFF" },
+                    },
+                },
+                scale: {
+                    scaleLabel: { fontColor: "#FFF" },
+                    gridLines: { color: "#FFF", zeroLineColor: "#FFF" },
+                    ticks: { fontColor: "#FFF" },
+                }
+            },
+            line: { borderColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"], "borderDash": [[5, 10], [0, 0]] },
+            bar: { backgroundColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"] },
+            pie: { backgroundColor: [["rgba(0,0,0,.8)", "rgba(220,20,20,.8)", "rgba(20,220,20,.8)", "rgba(220,220,20,.8)", "rgba(20,20,220,.8)"]] },
+            radar: { borderColor: ["rgba(20,220,220,.8)", "rgba(220,120,120,.8)", "rgba(20,120,220,.8)"] },
+        },
+        anything: [ 
+            {
+                className: "mermaid"
+            },
+            // ...
+        ],
+        menu: {
+            // Specifies which side of the presentation the menu will 
+            // be shown. Use 'left' or 'right'.
+            side: 'left',
+
+                // Specifies the width of the menu.
+                // Can be one of the following:
+                // 'normal', 'wide', 'third', 'half', 'full', or
+                // any valid css length value
+                width: 'normal',
+
+                    // Add slide numbers to the titles in the slide list.
+                    // Use 'true' or format string (same as reveal.js slide numbers)
+                    numbers: false,
+
+                        // Specifies which slide elements will be used for generating
+                        // the slide titles in the menu. The default selects the first
+                        // heading element found in the slide, but you can specify any
+                        // valid css selector and the text from the first matching
+                        // element will be used.
+                        // Note: that a section data-menu-title attribute or an element
+                        // with a menu-title class will take precedence over this option
+                        titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+                            // If slides do not have a matching title, attempt to use the
+                            // start of the text content as the title instead
+                            useTextContentForMissingTitles: false,
+
+                                // Hide slides from the menu that do not have a title.
+                                // Set to 'true' to only list slides with titles.
+                                hideMissingTitles: false,
+
+                                    // Adds markers to the slide titles to indicate the 
+                                    // progress through the presentation. Set to 'false'
+                                    // to hide the markers.
+                                    markers: true,
+
+                                        // Specify custom panels to be included in the menu, by
+                                        // providing an array of objects with 'title', 'icon'
+                                        // properties, and either a 'src' or 'content' property.
+                                        // custom: false,
+                                        custom: [],
+                                            // Specifies the themes that will be available in the themes
+                                            // menu panel. Set to 'true' to show the themes menu panel
+                                            // with the default themes list. Alternatively, provide an
+                                            // array to specify the themes to make available in the
+                                            // themes menu panel, for example...
+                                            // [
+                                            //     { name: 'Black', theme: 'css/theme/black.css' },
+                                            //     { name: 'White', theme: 'css/theme/white.css' },
+                                            //     { name: 'League', theme: 'css/theme/league.css' }
+                                            // ]
+                                            themes: false,
+
+                                                // Specifies the path to the default theme files. If your
+                                                // presentation uses a different path to the standard reveal
+                                                // layout then you need to provide this option, but only
+                                                // when 'themes' is set to 'true'. If you provide your own 
+                                                // list of themes or 'themes' is set to 'false' the 
+                                                // 'themesPath' option is ignored.
+                                                themesPath: 'css/theme/',
+
+                                                    // Specifies if the transitions menu panel will be shown.
+                                                    // Set to 'true' to show the transitions menu panel with
+                                                    // the default transitions list. Alternatively, provide an
+                                                    // array to specify the transitions to make available in
+                                                    // the transitions panel, for example...
+                                                    // ['None', 'Fade', 'Slide']
+                                                    transitions: false,
+
+                                                        // Adds a menu button to the slides to open the menu panel.
+                                                        // Set to 'false' to hide the button.
+                                                        openButton: true,
+
+                                                            // If 'true' allows the slide number in the presentation to
+                                                            // open the menu panel. The reveal.js slideNumber option must 
+                                                            // be displayed for this to take effect
+                                                            openSlideNumber: false,
+
+                                                                // If true allows the user to open and navigate the menu using
+                                                                // the keyboard. Standard keyboard interaction with reveal
+                                                                // will be disabled while the menu is open.
+                                                                keyboard: true,
+
+                                                                    // Normally the menu will close on user actions such as
+                                                                    // selecting a menu item, or clicking the presentation area.
+                                                                    // If 'true', the sticky option will leave the menu open
+                                                                    // until it is explicitly closed, that is, using the close
+                                                                    // button or pressing the ESC or m key (when the keyboard 
+                                                                    // interaction option is enabled).
+                                                                    sticky: false,
+
+                                                                        // If 'true' standard menu items will be automatically opened
+                                                                        // when navigating using the keyboard. Note: this only takes 
+                                                                        // effect when both the 'keyboard' and 'sticky' options are enabled.
+                                                                        autoOpen: true,
+
+                                                                            // If 'true' the menu will not be created until it is explicitly
+                                                                            // requested by calling RevealMenu.init(). Note this will delay
+                                                                            // the creation of all menu panels, including custom panels, and
+                                                                            // the menu button.
+                                                                            delayInit: false,
+
+                                                                                // If 'true' the menu will be shown when the menu is initialised.
+                                                                                openOnInit: false,
+
+                                                                                    // By default the menu will load it's own font-awesome library
+                                                                                    // icons. If your presentation needs to load a different
+                                                                                    // font-awesome library the 'loadIcons' option can be set to false
+                                                                                    // and the menu will not attempt to load the font-awesome library.
+                                                                                    loadIcons: false
+        },
+        chalkboard: {
+            toggleChalkboardButton: { left: "60px", bottom: "30px", top: "auto", right: "auto" },
+            toggleNotesButton: { left: "90px", bottom: "30px", top: "auto", right: "auto" },
+
+        }
+        */
+    });
+
+</script>
+
+
+</body>
+
 </html>

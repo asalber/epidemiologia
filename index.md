@@ -192,7 +192,7 @@ $$ R(E) = \frac{80}{1000} = 0.08$$ <!-- .element: class="fragment" -->
 
 - La prevalencia muestra el número de personas afectadas (carga de la enfermedad).
 - La incidencia muestra la evolución de la enfermedad y es más útil para detectar brotes y estudiar su causa.
-- La incidencia depende solo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad y de lo agresiva que sea.
+- La incidencia depende sobre todo de la contagiosidad de la enfermedad, mientras que la prevalencia depende también de la duración de la enfermedad y de lo agresiva que sea.
 
 <!-- $$ P(E) < R(E) $$ -->
 
@@ -366,6 +366,7 @@ grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es q
 
 $$
 \begin{aligned}
+P(E) &= \frac{60+40}{60+40+80+320} = 0.2\newline
 RR(E) &= \frac{60/(60+80)}{40/(40+320)} = 3.86
 \newline
 OR(E) &= \frac{60/80}{40/320} = 6
@@ -401,6 +402,7 @@ $$
 
 $$
 \begin{aligned}
+P(E) &= \frac{60+40}{60+40+160+640} = 0.11\newline
 RR(E) &= \frac{60/(60+160)}{40/(40+640)} = 4.64
 \newline
 OR(E) &= \frac{60/160}{40/640} = 6 
@@ -445,6 +447,7 @@ Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y neg
 <td style="text-align: center;"><span style="color: #fe375a">Falso negativo $FN$</span></td>
 <td style="text-align: center;"><span style="color: #66ff88">Verdadero Negativo $VN$</span></td>
 </tr>
+<td></td>
 </tbody>
 </table>
 
@@ -454,8 +457,7 @@ Normalmente producen dos resultados: positivo (+) a favor de la enfermedad y neg
 
 La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.
 
-> **Sensibilidad**  
-> La _sensibilidad_ de un test diagnóstico es la proporción de resultados positivos del test en personas con la enfermedad,
+> **Sensibilidad** La _sensibilidad_ de un test diagnóstico es la proporción de resultados positivos del test en personas con la enfermedad,
 > $$P(+|E)=\frac{VP}{VP+FN}$$
 
 > **Especificidad**
@@ -654,21 +656,27 @@ VPN>0.5 & \Rightarrow & \mbox{Descartar la enfermedad}
 \end{array}
 $$
 
+--
+
 ## Curva ROC
 
 En los test diagnósticos basado en la medición de una variable cuantitativa (como por ejemplo los test de antígenos para la COVID) la sensibilidad y la especificidad dependen el umbral fijado para dar un positivo. 
 
-![Curva ROC](img/curva-roc.png)
+<img src="img/curva-roc.svg" height=400 />
 
 --
 
-
-
 ### Interpretación de la curva ROC
 
+- Cada punto de la curva corresponde a un umbral para el positivo.
 - El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).
 - La diagonal representa un test con un diagnóstico aleatorio.
-- Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como _AUC_ (_area under the curve_). Según del valor de la AUC, se tiene
+
+--
+
+### Area debajo de la curva ROC (AUR)
+
+Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como _AUC_ (_area under the curve_). Según del valor de la AUC, se tiene
 
 - 0.5: Diagnóstico aleatorio.
 - [0.5, 0.6): Test malo.
