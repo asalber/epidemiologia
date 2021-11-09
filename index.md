@@ -660,9 +660,9 @@ $$
 
 ## Curva ROC
 
-En los test diagnósticos basado en la medición de una variable cuantitativa (como por ejemplo los test de antígenos para la COVID) la sensibilidad y la especificidad dependen el umbral fijado para dar un positivo. 
+> La curva ROC (Receiver Operating Characteristic) de un test diagnóstico es la curva que resulta de representar la razón de verdaderos positivos (sensibilidad) frente a la razón de falsos positivos (1-especificidad) para los diferentes umbrales de positivo del test.
 
-<img src="img/curva-roc.svg" height=400 />
+<img src="img/curva-roc.svg" height=500 />
 
 --
 
