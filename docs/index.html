@@ -182,12 +182,15 @@
 <div id="logo">
 <img src="img/logo-uspceu.svg" />
 </div>    
-<p><strong>Semana de la Ciencia y la Innovación 2021</strong></p>
+<p><strong>Seminario Ciencia y Humanismo</strong></p>
 <div id='title'>
 <p>Epidemiología para tiempos de pandemias</p>
 </div>
 <p>Alfredo Sánchez Alberca <a href="mailto:asalber@ceu.es"><i class='fa fa-envelope'></i></a> <a href="https://twitter.com/aprendeconalf"><i class='fa fa-twitter'></i></a> <a href="https://aprendeconalf.es"><i class='fa fa-home'></i></a></p>
-<p>8 noviembre 2021</p>
+<div id="qr">
+<img src="img/qr.png" height="200px" />
+</div>
+<p>15 marzo 2022</p>
 
     </section>
   
@@ -200,7 +203,7 @@
 <blockquote>
 <p>En el ámbito de la salud pública, la <strong>Epidemilogía</strong> es una rama de la Medicina que se encarga del estudio de la distribución y las causas de eventos relacionados con la salud (normalmente enfermedades) en las poblaciones, y la aplicación de este estudio para controlar problemas públicos de salud.</p>
 </blockquote>
-<img src="img/detective.png" width=80% alt="Detective epidemiólogo">
+<img src="img/detective.png" width=70% alt="Detective epidemiólogo">
       </section>
       
         <section >
@@ -392,7 +395,7 @@ $$ R(E) = \frac{80}{1000} = 0.08$$ </p>
 <p>Los datos son poco precisos y subestiman el riesgo del COVID:</p>
 <ul>
 <li>Muchos asintomáticos no son detectados.</li>
-<li>La detección de casos es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos)</li>
+<li>En muchos casos la detección de la enfermedad es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos).</li>
 <li>Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).</li>
 </ul>
 
@@ -461,7 +464,7 @@ $$ R(E) = \frac{80}{1000} = 0.08$$ </p>
 </tr>
 <td></td>
 </tbody>
-</table>
+</table> 
 <p>$$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$</p>
 
         </section>
@@ -521,9 +524,10 @@ $$ R(E) = \frac{80}{1000} = 0.08$$ </p>
       
         <section >
           <h2><a id="user-content-riesgo-relativo-vs-odds-ratio" class="anchor" href="#riesgo-relativo-vs-odds-ratio" aria-hidden="true"></a>Riesgo relativo vs Odds ratio</h2>
-<p>El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.</p>
+<p><i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.</p>
 <p>La interpretación del odds ratio es más enrevesada porque es contrafactual, ya que da cuántas veces es más frecuente el suceso en el grupo tratamiento en comparación con el control, asumiendo que en el
-grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es que no depende de la incidencia de la enfermedad.</p>
+grupo control es tan frecuente que ocurra el suceso como que no.</p>
+<p>El odds ratio, sin embargo, no depende de la incidencia, por lo que es más apropiado para estudios donde no se conoce la incidencia (por ejemplo <em>estudios retrospectivos</em>).</p>
 
         </section>
       
@@ -653,10 +657,10 @@ $$</p>
 <p><strong>Sensibilidad</strong> La <em>sensibilidad</em> de un test diagnóstico es la proporción de resultados positivos del test en personas con la enfermedad,
 $$P(+|E)=\frac{VP}{VP+FN}$$</p>
 </blockquote>
-<blockquote>
+<blockquote class="fragment">
 <p><strong>Especificidad</strong>
 La <em>especificidad</em> de un test diagnóstico es la proporción de resultados negativos del test en personas sin la enfermedad,
-$$P(-|\overline{E})=\frac{VN}{VN+FP}$$</p>
+$$P(-|\overline{E})=\frac{VN}{VN+FP}$$ </p>
 </blockquote>
 
         </section>
@@ -674,7 +678,26 @@ $$P(-|\overline{E})=\frac{VN}{VN+FP}$$</p>
       
         <section >
           <h2><a id="user-content-fiabilidad-de-un-test-diagnóstico" class="anchor" href="#fiabilidad-de-un-test-diagnóstico" aria-hidden="true"></a>Fiabilidad de un test diagnóstico</h2>
-<p>La fiabilidad del test depende también de la prevalencia de la enfermedad.</p>
+<ul>
+<li>Sensibilidad 🠕 = VP 🠕 y FN 🠗</li>
+<li>Especificidad 🠕 = VN 🠕 y FP 🠗</li>
+</ul>
+<p><strong>Ejemplo</strong></p>
+<div id="left">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
+<img src="img/test-1.png">
+</a>
+</div>
+<div id="right">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
+<img src="img/test-2.png">
+</a>
+</div>
+        </section>
+      
+        <section >
+          <h2><a id="user-content-fiabilidad-de-un-test-diagnóstico" class="anchor" href="#fiabilidad-de-un-test-diagnóstico" aria-hidden="true"></a>Fiabilidad de un test diagnóstico</h2>
+<p>La sensibilidad y la especificidad de un test diagnóstico no dependen de la prevalencia de la enfermedad. Sin embargo, el número de errores de un test diagnóstico si depende de esta.</p>
 <p><strong>Ejemplo</strong>. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:</p>
 <div id="left"> 
 Prevalencia 1%
@@ -778,16 +801,17 @@ consecuencias.</p>
 El <em>valor predictivo positivo</em> de un test diagnóstico es la proporción de personas con la enfermedad entre las personas con resultado positivo en el test,
 $$P(E|+) = \frac{VP}{VP+FP}$$</p>
 </blockquote>
-<blockquote>
+<blockquote class="fragment">
 <p><strong>Valor predictivo negativo</strong><br>
 El <em>valor predictivo negativo</em> de un test diagnóstico es la proporción de personas sin la enfermedad entre las personas con resultado negativo en el test,
-$$P(\overline{E}|-) = \frac{VN}{VN+FN}$$</p>
+$$P(\overline{E}|-) = \frac{VN}{VN+FN}$$ </p>
 </blockquote>
 
         </section>
       
         <section >
           <h2><a id="user-content-valores-predictivos" class="anchor" href="#valores-predictivos" aria-hidden="true"></a>Valores predictivos</h2>
+<p><i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Los valores predictivos dependen de la prevalencia de la enfermedad.</p>
 <p><strong>Ejemplo</strong>. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:</p>
 <div id="left"> 
 Prevalencia 1%
@@ -855,26 +879,35 @@ $$</p>
         </section>
       
         <section >
+          <h2><a id="user-content-umbral-de-clasificación" class="anchor" href="#umbral-de-clasificación" aria-hidden="true"></a>Umbral de clasificación</h2>
+<p>En muchas ocasiones el resultado de un test no es dicotómico (positivo / negativo) sino que es un valor continuo (por ejemplo una concentración de una hormona, de un antígeno, etc.). En tales casos se suele fijar un valor umbral para separar el positivo y el negativo.</p>
+<img src="img/umbral-test-diagnostico.jpg" height=300 />
+<p>Para cada valor del umbral se tiene un sensibilidad y una especificidad distinta.</p>
+<p><i class="fa fa-question-circle" style="color:#ff9900;"></i> <em>¿Qué umbral permite hacer mejores diagnósticos?</em></p>
+
+        </section>
+      
+        <section >
           <h2><a id="user-content-curva-roc" class="anchor" href="#curva-roc" aria-hidden="true"></a>Curva ROC</h2>
 <blockquote>
-<p>La curva ROC (Receiver Operating Characteristic) de un test diagnóstico es la curva que resulta de representar la razón de verdaderos positivos (sensibilidad) frente a la razón de falsos positivos (1-especificidad) para los diferentes umbrales de positivo del test.</p>
+<p>La curva ROC (Receiver Operating Characteristic) de un test diagnóstico es la curva que resulta de representar la razón de verdaderos positivos (sensibilidad) frente a la razón de falsos positivos (1-especificidad) para los diferentes umbrales de clasificación del test.</p>
 </blockquote>
-<img src="img/curva-roc.svg" height=500 />
+<img src="img/curva-roc.svg" height=400 />
         </section>
       
         <section >
           <h3><a id="user-content-interpretación-de-la-curva-roc" class="anchor" href="#interpretación-de-la-curva-roc" aria-hidden="true"></a>Interpretación de la curva ROC</h3>
 <ul>
-<li>Cada punto de la curva corresponde a un umbral para el positivo.</li>
-<li>El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).</li>
+<li>Cada punto de la curva corresponde a un umbral de clasificación.</li>
 <li>La diagonal representa un test con un diagnóstico aleatorio.</li>
+<li>El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).</li>
 </ul>
 
         </section>
       
         <section >
           <h3><a id="user-content-area-debajo-de-la-curva-roc-aur" class="anchor" href="#area-debajo-de-la-curva-roc-aur" aria-hidden="true"></a>Area debajo de la curva ROC (AUR)</h3>
-<p>Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como <em>AUC</em> (<em>area under the curve</em>). Según del valor de la AUC, se tiene</p>
+<p>Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de clasificación se suele medir el area bajo la curva ROC, también conocida como <em>AUC</em> (<em>area under the curve</em>). Según del valor de la AUC, se tiene:</p>
 <ul>
 <li>0.5: Diagnóstico aleatorio.</li>
 <li>[0.5, 0.6): Test malo.</li>

@@ -347,3 +347,9 @@ td.rotate > div {
     top: 0px;
     right: 0px;
 }
+
+#qr img {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

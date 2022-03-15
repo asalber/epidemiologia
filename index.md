@@ -20,7 +20,7 @@ enableMenu: false
 <img src="img/logo-uspceu.svg" />
 </div>    
 
-**Semana de la Ciencia y la Innovación 2021** 
+**Seminario Ciencia y Humanismo** 
 
 <div id='title'>
 
@@ -30,7 +30,11 @@ Epidemiología para tiempos de pandemias
 
 Alfredo Sánchez Alberca <a href="mailto:asalber@ceu.es"><i class='fa fa-envelope'></i></a> <a href="https://twitter.com/aprendeconalf"><i class='fa fa-twitter'></i></a> <a href="https://aprendeconalf.es"><i class='fa fa-home'></i></a>
 
-8 noviembre 2021
+<div id="qr">
+<img src="img/qr.png" height="200px" />
+</div>
+
+15 marzo 2022
 
 ---
 
@@ -40,7 +44,7 @@ Epidemiología viene Griego: Epi (sobre), demos (gente) y logos (estudio), es de
 
 > En el ámbito de la salud pública, la **Epidemilogía** es una rama de la Medicina que se encarga del estudio de la distribución y las causas de eventos relacionados con la salud (normalmente enfermedades) en las poblaciones, y la aplicación de este estudio para controlar problemas públicos de salud.
 
-<img src="img/detective.png" width=80% alt="Detective epidemiólogo">
+<img src="img/detective.png" width=70% alt="Detective epidemiólogo">
 
 --
 
@@ -207,7 +211,7 @@ La incidencia del COVID se suele dar sobre un periodo de dos semanas (14 días) 
 Los datos son poco precisos y subestiman el riesgo del COVID:
 
 - Muchos asintomáticos no son detectados.
-- La detección de casos es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos)
+- En muchos casos la detección de la enfermedad es mediante test diagnósticos que tienen un margen de error (falsos positivos y falsos negativos).
 - Se calcula dividiendo por el tamaño de la población (nuevos casos por cada 100000 habitantes) pero habría que dividir por el tamaño de la población en riesgo (sin contar ya infectados o inmunizados).
 
 ---
@@ -271,7 +275,7 @@ Dos grupos:
 </tr>
 <td></td>
 </tbody>
-</table>
+</table> 
 
 $$RR(G) = \frac{20/(20+480)}{80/(80+420)} = 0.25$$
 
@@ -329,10 +333,12 @@ $$OR(G) = \frac{20/480}{80/420} = 0.22$$
 
 ## Riesgo relativo vs Odds ratio
 
-El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.
+<i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> El riesgo relativo es una comparación de probabilidades pero depende de la incidencia de la enfermedad.
 
 La interpretación del odds ratio es más enrevesada porque es contrafactual, ya que da cuántas veces es más frecuente el suceso en el grupo tratamiento en comparación con el control, asumiendo que en el
-grupo control es tan frecuente que ocurra el suceso como que no. Su ventaja es que no depende de la incidencia de la enfermedad.
+grupo control es tan frecuente que ocurra el suceso como que no. 
+
+El odds ratio, sin embargo, no depende de la incidencia, por lo que es más apropiado para estudios donde no se conoce la incidencia (por ejemplo _estudios retrospectivos_).
 
 --
 
@@ -462,7 +468,7 @@ La fiabilidad de un test diagnóstico depende de las siguientes probabilidades.
 
 > **Especificidad**
 > La _especificidad_ de un test diagnóstico es la proporción de resultados negativos del test en personas sin la enfermedad,
-> $$P(-|\overline{E})=\frac{VN}{VN+FP}$$
+> $$P(-|\overline{E})=\frac{VN}{VN+FP}$$ <!-- .element: class="fragment" -->
 
 --
 
@@ -479,7 +485,29 @@ Un test de antígenos para detectar el SARS-COV-2 tiene una sensibilidad del 70%
 
 ## Fiabilidad de un test diagnóstico
 
-La fiabilidad del test depende también de la prevalencia de la enfermedad.
+- Sensibilidad 🠕 = VP 🠕 y FN 🠗
+- Especificidad 🠕 = VN 🠕 y FP 🠗  
+
+
+**Ejemplo**
+
+<div id="left">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
+<img src="img/test-1.png">
+</a>
+</div>
+
+<div id="right">
+<a href="http://nube.aprendeconalf.es/shiny/diagnostic-test/"> 
+<img src="img/test-2.png">
+</a>
+</div>
+
+--
+
+## Fiabilidad de un test diagnóstico
+
+La sensibilidad y la especificidad de un test diagnóstico no dependen de la prevalencia de la enfermedad. Sin embargo, el número de errores de un test diagnóstico si depende de esta.
 
 **Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
 
@@ -582,11 +610,13 @@ Utilizaremos un test específico cuando:
 
 > **Valor predictivo negativo**  
 > El _valor predictivo negativo_ de un test diagnóstico es la proporción de personas sin la enfermedad entre las personas con resultado negativo en el test,
-> $$P(\overline{E}|-) = \frac{VN}{VN+FN}$$
+> $$P(\overline{E}|-) = \frac{VN}{VN+FN}$$ <!-- .element: class="fragment" -->
 
 --
 
 ## Valores predictivos
+
+<i class="fa fa-exclamation-triangle" style="color:#ff9900;"></i> Los valores predictivos dependen de la prevalencia de la enfermedad.
 
 **Ejemplo**. Suponiendo que la especificidad es del 70% y la especificidad es del 95% y el tamaño poblacional es 1000:
 
@@ -658,25 +688,37 @@ $$
 
 --
 
+## Umbral de clasificación
+
+En muchas ocasiones el resultado de un test no es dicotómico (positivo / negativo) sino que es un valor continuo (por ejemplo una concentración de una hormona, de un antígeno, etc.). En tales casos se suele fijar un valor umbral para separar el positivo y el negativo.
+
+<img src="img/umbral-test-diagnostico.jpg" height=300 />
+
+Para cada valor del umbral se tiene un sensibilidad y una especificidad distinta.
+
+<i class="fa fa-question-circle" style="color:#ff9900;"></i> _¿Qué umbral permite hacer mejores diagnósticos?_
+
+--
+
 ## Curva ROC
 
-> La curva ROC (Receiver Operating Characteristic) de un test diagnóstico es la curva que resulta de representar la razón de verdaderos positivos (sensibilidad) frente a la razón de falsos positivos (1-especificidad) para los diferentes umbrales de positivo del test.
+> La curva ROC (Receiver Operating Characteristic) de un test diagnóstico es la curva que resulta de representar la razón de verdaderos positivos (sensibilidad) frente a la razón de falsos positivos (1-especificidad) para los diferentes umbrales de clasificación del test.
 
-<img src="img/curva-roc.svg" height=500 />
+<img src="img/curva-roc.svg" height=400 />
 
 --
 
 ### Interpretación de la curva ROC
 
-- Cada punto de la curva corresponde a un umbral para el positivo.
-- El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).
+- Cada punto de la curva corresponde a un umbral de clasificación.
 - La diagonal representa un test con un diagnóstico aleatorio.
+- El mejor test es el que que se sitúa en la esquina superior izquierda de el espacio (sensibilidad 1 y especificidad 1).
 
 --
 
 ### Area debajo de la curva ROC (AUR)
 
-Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de positivos se suele medir el area bajo la curva ROC, también conocida como _AUC_ (_area under the curve_). Según del valor de la AUC, se tiene
+Para evaluar la fiabilidad de un test diagnóstico independientemente del umbral de clasificación se suele medir el area bajo la curva ROC, también conocida como _AUC_ (_area under the curve_). Según del valor de la AUC, se tiene:
 
 - 0.5: Diagnóstico aleatorio.
 - [0.5, 0.6): Test malo.
